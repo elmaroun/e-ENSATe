@@ -32,3 +32,27 @@ const root = document.getElementById('documentForm');
 if (root) {
     ReactDOM.createRoot(root).render(<DocumentForm />);
 }
+
+import ReclamationForm from './Components/ReclamationForm';
+
+const roott = document.getElementById('reclamationform');
+
+if (roott) {
+    ReactDOM.createRoot(roott).render(<ReclamationForm/>);
+}
+import DemandeForm from './Components/DemandeForm';
+
+const roots = document.getElementById('demandeform');
+
+if (roots) {
+    ReactDOM.createRoot(roots).render(<DemandeForm/>);
+}
+
+
+import DemandeConventionForm from './Components/demandeconvention';
+
+const rootr = document.getElementById('demandeconventionform');
+
+if (rootr) {
+    ReactDOM.createRoot(rootr).render(<DemandeConventionForm/>);
+}

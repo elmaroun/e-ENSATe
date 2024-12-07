@@ -1,81 +1,38 @@
-import React, { useState } from 'react';
-import axios from 'axios';
 
-const DocumentForm = () => {
-    const [formData, setFormData] = useState({
-        prenom: '',
-        nom: '',
-        email_institutionnel: '',
-        cin: '',
-        code_apogee: '',
-        type_document: '',
-    });
+import Header from './header';
 
-    const [errors, setErrors] = useState({});
-    const [success, setSuccess] = useState(null);
-
-    // Function to handle form input changes
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    // Function to handle form submission
-    const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent default form submission behavior
-        setErrors({});
-        setSuccess(null);
-
-        try {
-            // Send POST request to the Laravel route
-            const response = await axios.post('/document-administrative', formData);
-            setSuccess(response.data.message); // Set success message
-        } catch (error) {
-            // Handle validation errors
-            if (error.response && error.response.status === 422) {
-                setErrors(error.response.data.errors); // Set validation errors
-            }
-        }
-    };
+export default function Example() {
 
     return (
-        <div>
-            <h1>Demande de Document Administratif</h1>
-            {success && <p style={{ color: 'green' }}>{success}</p>}
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Prénom</label>
-                    <input type="text" name="prenom" value={formData.prenom} onChange={handleChange} />
-                    {errors.prenom && <p style={{ color: 'red' }}>{errors.prenom[0]}</p>}
-                </div>
-                <div>
-                    <label>Nom</label>
-                    <input type="text" name="nom" value={formData.nom} onChange={handleChange} />
-                    {errors.nom && <p style={{ color: 'red' }}>{errors.nom[0]}</p>}
-                </div>
-                <div>
-                    <label>Email Institutionnel</label>
-                    <input type="email" name="email_institutionnel" value={formData.email_institutionnel} onChange={handleChange} />
-                    {errors.email_institutionnel && <p style={{ color: 'red' }}>{errors.email_institutionnel[0]}</p>}
-                </div>
-                <div>
-                    <label>CIN</label>
-                    <input type="text" name="cin" value={formData.cin} onChange={handleChange} />
-                    {errors.cin && <p style={{ color: 'red' }}>{errors.cin[0]}</p>}
-                </div>
-                <div>
-                    <label>Code Apogée</label>
-                    <input type="text" name="code_apogee" value={formData.code_apogee} onChange={handleChange} />
-                    {errors.code_apogee && <p style={{ color: 'red' }}>{errors.code_apogee[0]}</p>}
-                </div>
-                <div>
-                    <label>Type de Document</label>
-                    <input type="text" name="type_document" value={formData.type_document} onChange={handleChange} />
-                    {errors.type_document && <p style={{ color: 'red' }}>{errors.type_document[0]}</p>}
-                </div>
-                <button type="submit">Envoyer</button>
-            </form>
-        </div>
-    );
-};
+      <div className="bg-white">
+      
+      <Header />
 
-export default DocumentForm;
+        <div className="relative isolate px-6 pt-14 lg:px-8">
+          
+          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+            <div className="text-center">
+              <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
+                  Bienvenue dans votre espace étudiant !
+              </h1>
+              <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
+                  Accédez rapidement à vos services académiques et administratifs
+              </p>
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <a
+                  href="/Demande"
+                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Demander un Document
+                </a>
+                <a href="/Reclamation" className="text-sm/6 font-semibold text-gray-900">
+                  Réclamation <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+  

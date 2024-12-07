@@ -3,6 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\DemandeController;
+
+use App\Http\Controllers\ReclamationController;
+
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -23,16 +28,24 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-use App\Http\Controllers\DocumentAdministrativeController;
 
 
 
-Route::get('/document-administrative/form', [DocumentAdministrativeController::class, 'showForm'])
-    ->name('document-administrative.form');
+Route::get('/welcome', [WelcomeController::class, 'showwelcome'])
+    ->name('welcome');
 
 
-Route::post('/document-administrative', [DocumentAdministrativeController::class, 'store'])
-    ->name('document-administrative.store');
+Route::get('/Reclamation', [ReclamationController::class, 'showReclamation'])
+    ->name('reclalamtion');
+
+Route::get('/Demande', [DemandeController::class, 'showDemande'])
+    ->name('Demande');
+
+
+Route::get('/Demande_convention_stage', [DemandeController::class, 'showDemande_convention'])
+    ->name('Demande_convention');
+
+
 
 
 require __DIR__.'/auth.php';

@@ -6,8 +6,11 @@
     <title>Document Administrative Form</title>
 </head>
 <body>
-    <div id="documentForm"></div>
+    <div id="reclamationform">
+    <h1>ilias</h1>
+
     @viteReactRefresh
     @vite(['resources/js/app.jsx'])
+    </div>
 </body>
 </html>
