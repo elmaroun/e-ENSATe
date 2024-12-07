@@ -23,3 +23,12 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import DocumentForm from './components/DocumentForm';
+
+const root = document.getElementById('documentForm');
+
+if (root) {
+    ReactDOM.createRoot(root).render(<DocumentForm />);
+}

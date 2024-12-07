@@ -23,5 +23,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+use App\Http\Controllers\DocumentAdministrativeController;
+
+
+
+Route::get('/document-administrative/form', [DocumentAdministrativeController::class, 'showForm'])
+    ->name('document-administrative.form');
+
+
+Route::post('/document-administrative', [DocumentAdministrativeController::class, 'store'])
+    ->name('document-administrative.store');
+
 
 require __DIR__.'/auth.php';
