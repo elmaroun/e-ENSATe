@@ -56,3 +56,19 @@ const rootr = document.getElementById('demandeconventionform');
 if (rootr) {
     ReactDOM.createRoot(rootr).render(<DemandeConventionForm/>);
 }
+
+import DemandeAttestationReussite from './Components/DemandeAttestationReussite';
+
+const rootd = document.getElementById('demandeattestationreussiteform');
+
+if (rootd) {
+    ReactDOM.createRoot(rootd).render(<DemandeAttestationReussite/>);
+}
+
+import DemandeReleveNote from './Components/DemandeReleveNote';
+
+const rooti = document.getElementById('demanderelevenote');
+
+if (rooti) {
+    ReactDOM.createRoot(rooti).render(<DemandeReleveNote/>);
+}

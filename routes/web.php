@@ -45,7 +45,11 @@ Route::get('/Demande', [DemandeController::class, 'showDemande'])
 Route::get('/Demande_convention_stage', [DemandeController::class, 'showDemande_convention'])
     ->name('Demande_convention');
 
+Route::get('/Demande_attestation_reussite', [DemandeController::class, 'showattestation_reussite'])
+    ->name('Demande_attestation_reussite');
 
+ Route::get('/Demande_releve_notes', [DemandeController::class, 'show_releve_note'])
+    ->name('Demande_releve_note');
 
 
 require __DIR__.'/auth.php';

@@ -15,5 +15,13 @@ class DemandeController extends Controller
     {
         return view('page-demande-convention');
     }
+    public function showattestation_reussite()
+    {
+        return view('page-demande-attestation-reussite');
+    }
+    public function show_releve_note()
+    {
+        return view('page-demande-releve_note');
+    }
 
 }
