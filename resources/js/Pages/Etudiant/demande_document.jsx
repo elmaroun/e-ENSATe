@@ -1,11 +1,14 @@
+import Header from '../../Components/header';
 
-import Header from './header';
+import React from 'react';
 
-export default function Example() {
+
+const demande_document= () =>  {
 
   return (
 <div className="bg-white">
-  <Header />
+    <Header/>
+
      
 
   <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -141,3 +144,5 @@ export default function Example() {
     </div>
   )
 }
+export default demande_document;
+

@@ -19,9 +19,28 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/welcome', function () {
+    return Inertia::render('Etudiant/welcome');
+})->name('welcome');
+
+Route::get('/demande', function () {
+    return Inertia::render('Etudiant/demande_document');
+})->name('demande_document');
+
+Route::get('/reclamation', function () {
+    return Inertia::render('Etudiant/reclamation');
+})->name('reclamation');
+
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return Inertia::render('Admin/dashboard');
+})->name('dashboard');
+
+Route::get('/contacter-nous', function () {
+    return Inertia::render('Etudiant/contacter');
+})->name('contacter');
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,15 +50,10 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('/welcome', [WelcomeController::class, 'showwelcome'])
-    ->name('welcome');
 
 
-Route::get('/Reclamation', [ReclamationController::class, 'showReclamation'])
-    ->name('reclalamtion');
 
-Route::get('/Demande', [DemandeController::class, 'showDemande'])
-    ->name('Demande');
+
 
 
 Route::get('/Demande_convention_stage', [DemandeController::class, 'showDemande_convention'])
