@@ -39,8 +39,17 @@ Route::get('/contacter-nous', function () {
     return Inertia::render('Etudiant/contacter');
 })->name('contacter');
 
+Route::get('/demande-releve-notes', function () {
+    return Inertia::render('Etudiant/type_demande/DemandeReleveNote');
+})->name('DemandeReleveNote');
 
+Route::get('/demande-convention', function () {
+    return Inertia::render('Etudiant/type_demande/demandeconvention');
+})->name('DemandeConvention');
 
+Route::get('/demande-attestation', function () {
+    return Inertia::render('Etudiant/type_demande/DemandeAttestationReussite');
+})->name('DemandeAttestation');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

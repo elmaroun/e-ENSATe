@@ -1,7 +1,7 @@
 
-import Header from './header';
+import Header from '../../../Components/header';
 
-export default function Example() {
+const demande_convention= () =>  {
 
   return (
 <div className="bg-white">
@@ -291,3 +291,4 @@ export default function Example() {
     </div>
   )
 }
+export default demande_convention;

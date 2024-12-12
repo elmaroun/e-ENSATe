@@ -1,9 +1,10 @@
 
-import Header from './header';
+import Header from '../../../Components/header';
 import React, { useState } from "react";
 
 
-export default function Example() {
+const demande_releve= () =>  {
+ 
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 7 }, (_, i) => currentYear -1 - i);
   const yearsfin = Array.from({ length: 7 }, (_, i) => currentYear  - i);
@@ -40,7 +41,7 @@ export default function Example() {
 
   <div className="relative isolate px-6 pt-14 lg:px-8">
       <h2 className="mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900">
-         Demande d'Attestation de Réussite
+         Demande de releve des notes
       </h2>
   <div className="mx-auto max-w-2xl py-32 sm:py-15 lg:pb-52 pt-15">
   <form>
@@ -158,3 +159,5 @@ export default function Example() {
     </div>
   )
 }
+export default demande_releve;
+
