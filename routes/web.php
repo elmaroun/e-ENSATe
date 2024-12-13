@@ -5,8 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DemandeController;
-
-use App\Http\Controllers\ReclamationController;
+use App\Http\Controllers\CustomAdminController;
 
 use Inertia\Inertia;
 
@@ -51,11 +50,18 @@ Route::get('/demande-attestation', function () {
     return Inertia::render('Etudiant/type_demande/DemandeAttestationReussite');
 })->name('DemandeAttestation');
 
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+//administrateur
+Route::get('/traitement_reclamation', [CustomAdminController::class,'show'])->name('traitement_reclamation');
+
 
 
 
