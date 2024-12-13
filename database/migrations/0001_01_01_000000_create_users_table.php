@@ -11,6 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('sessions');
+
+        Schema::dropIfExists('reclamation');
+        Schema::dropIfExists('convention_stage');
+        Schema::dropIfExists('releve_notes');
+        Schema::dropIfExists('attestation_reussite');
+        Schema::dropIfExists('notes');
+        Schema::dropIfExists('demande');
+
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('students');
+
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -30,27 +45,32 @@ return new class extends Migration
             $table->string('filiere');
             $table->string('annee_inscription', 4);
             $table->string('niveau');
+            $table->timestamps();
         });
-        Schema::create('demande', function (Blueprint $table) {
+        Schema::create('demandes', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_student');
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('type_demande', ['convention de stage ', 'attestation de scolarite', 'attestation de reussite','releve des notes']);
             $table->enum('status',['Traitée','En cours','Non traitée']);
             $table->date('date_demande');
-            $table->string('id_admin')->nullable();
+            $table->timestamps();
+
+            $table->foreignId('admin_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade')->nullable();
         });
-        Schema::create('reclamation', function (Blueprint $table) {
+        Schema::create('reclamations', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_student');
-            $table->string('id_admin')->nullable();
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('admin_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->enum('type',['Problèmes techniques','Problèmes de service école','Autre problème']);
             $table->text('contenu');
             $table->string('sujet');
             $table->date('date_reclamation');
+            $table->timestamps();
+
         });
-        Schema::create('convention_stage', function (Blueprint $table) {
+        Schema::create('convention_stages', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_demande');
+            $table->foreignId('demande_id')->constrained('demandes')->onDelete('cascade')->onUpdate('cascade');
             $table->string('Raison_social_de_entreprise');
             $table->string('Secteur_entreprise');
             $table->string('Telephone_entreprise');
@@ -64,28 +84,35 @@ return new class extends Migration
             $table->string('telephone_encadrant');
             $table->string('email_encadrant');
             $table->string('encadrant_ensa');
-            $table->string('encadrant_ensa');
             $table->date('date_debut');
             $table->date('date_fin');
             $table->text('sujet');
+            $table->timestamps();
+
         });
         Schema::create('releve_notes', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_demande');
+            $table->foreignId('demande_id')->constrained('demandes')->onDelete('cascade')->onUpdate('cascade');
             $table->string('annee', 4);
             $table->enum('semestre',['Semestre 1','Semestre 2']);
+            $table->timestamps();
+
         });
-        Schema::create('attestation_reussite', function (Blueprint $table) {
+        Schema::create('attestation_reussites', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_demande');
+            $table->foreignId('demande_id')->constrained('demandes')->onDelete('cascade')->onUpdate('cascade');
             $table->string('annee', 4);
+            $table->timestamps();
+
         });
-        Schema::create('Notes', function (Blueprint $table) {
+        Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_student');
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('note');
-            $table->integer('Module');
+            $table->String('Module');
             $table->string('annee', 4);
+            $table->timestamps();
+
         });
 
 
@@ -114,5 +141,16 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('students');
+        Schema::dropIfExists('demande');
+
+        Schema::dropIfExists('reclamation');
+        Schema::dropIfExists('convention_stage');
+        Schema::dropIfExists('releve_notes');
+        Schema::dropIfExists('attestation_reussite');
+        Schema::dropIfExists('notes');
+
+
+
     }
 };
