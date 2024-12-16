@@ -5,12 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DemandeController;
-<<<<<<< HEAD
-
-
-=======
 use App\Http\Controllers\CustomAdminController;
->>>>>>> 7a559c6b02fa2421d1c5fac5dcf25b32aa579a6d
 
 use Inertia\Inertia;
 
@@ -57,7 +52,6 @@ Route::get('/demande-attestation', function () {
 
 
 
-<<<<<<< HEAD
 //admin
 
 Route::get('/reclamations_admin', [ReclamationController::class, 'showReclamations'])->name('reclamationadmin');;
@@ -72,8 +66,6 @@ Route::get('/accepter_attestation_reuissite', [ReclamationController::class, 'at
 
 
 
-=======
->>>>>>> 7a559c6b02fa2421d1c5fac5dcf25b32aa579a6d
 
 
 
