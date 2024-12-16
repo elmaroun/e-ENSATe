@@ -1,12 +1,12 @@
 <?php
-
+use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DemandeController;
 
-use App\Http\Controllers\ReclamationController;
+
 
 use Inertia\Inertia;
 
@@ -51,6 +51,23 @@ Route::get('/demande-attestation', function () {
     return Inertia::render('Etudiant/type_demande/DemandeAttestationReussite');
 })->name('DemandeAttestation');
 
+
+
+//admin
+
+Route::get('/reclamations_admin', [ReclamationController::class, 'showReclamations'])->name('reclamationadmin');;
+Route::get('/probleme_technique/{id}', [ReclamationController::class, 'showProblemeTechnique'])->name('probleme_technique');
+Route::get('/accepter_attestation_reuissite', [ReclamationController::class, 'attestationreuissitePDF'])->name('attestationreuissitePDF');
+
+//fin
+
+
+
+
+
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -59,20 +76,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-
-
-
-
-
-
-Route::get('/Demande_convention_stage', [DemandeController::class, 'showDemande_convention'])
-    ->name('Demande_convention');
-
-Route::get('/Demande_attestation_reussite', [DemandeController::class, 'showattestation_reussite'])
-    ->name('Demande_attestation_reussite');
-
- Route::get('/Demande_releve_notes', [DemandeController::class, 'show_releve_note'])
-    ->name('Demande_releve_note');
 
 
 require __DIR__.'/auth.php';
