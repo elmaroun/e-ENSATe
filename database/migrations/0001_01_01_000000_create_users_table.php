@@ -65,6 +65,7 @@ return new class extends Migration
             $table->text('contenu');
             $table->string('sujet');
             $table->date('date_reclamation');
+            $table->enum('status',['Traitée','En cours','Non traitée']);
             $table->timestamps();
 
         });
@@ -101,7 +102,16 @@ return new class extends Migration
         Schema::create('attestation_reussites', function (Blueprint $table) {
             $table->id();
             $table->foreignId('demande_id')->constrained('demandes')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('annee', 4);
+            $table->string('annee1', 4);
+            $table->string('annee2', 4);
+            $table->timestamps();
+
+        });
+        Schema::create('attestation_scolarites', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('demande_id')->constrained('demandes')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('annee1', 4);
+            $table->string('annee2', 4);
             $table->timestamps();
 
         });

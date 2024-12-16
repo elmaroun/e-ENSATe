@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
     convention_stage::factory(20)->create();
     Releve_Note::factory(10)->create();
     Attestation_Reussite::factory(10)->create();
+    Attestation_Scolarite::factory(10)->create();
     Note::factory(80)->create();
    
         //User::factory()->create([
