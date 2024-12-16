@@ -10,7 +10,7 @@ use App\Models\Demande;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class Attestation_ReussiteFactory extends Factory
+class Attestation_ScolariteFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class Attestation_ReussiteFactory extends Factory
     public function definition(): array
     {
         $demande= Demande::inRandomOrder()
-        ->where('demandes.type_demande', "attestation de reussite")
+        ->where('demandes.type_demande', "attestation de scolarite")
         ->first();  // Get a random existing student
 
         return [
