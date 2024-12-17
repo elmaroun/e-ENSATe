@@ -120,7 +120,7 @@ const detailsdemandes=({demandes,conventions,id}) => {
                 <a    href={route('accepter.demande.convention', { id: convention.demande_id })} className="rounded-md  bg-blue-800 bg-opacity-90 px-3.5 py-2.5 text-sm text-white shadow-sm hover:bg-blue-700 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
                   Accepter & Envoyer le Doc <span aria-hidden="true">&rarr;</span>
                 </a>
-                <a    href="#" className="rounded-md  bg-rose-600 bg-opacity-90 px-3.5 py-2.5 text-sm text-white shadow-sm hover:bg-rose-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+                <a    href={route('Refuser_demande_document', { id: convention.demande_id })} className="rounded-md  bg-rose-600 bg-opacity-90 px-3.5 py-2.5 text-sm text-white shadow-sm hover:bg-rose-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
                   Refuser la demandes
                 </a>
             </div>

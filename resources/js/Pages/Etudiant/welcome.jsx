@@ -8,7 +8,7 @@ export default function Welcome() {
 
     return (
       <div className="bg-white">
-            <HeaderAdmin/>
+            <Header/>
             <Head title="Bienvenue" />
 
         <div className="relative isolate px-6 pt-14 lg:px-8">
