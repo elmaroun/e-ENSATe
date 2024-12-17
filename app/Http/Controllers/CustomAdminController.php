@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\Demande;
 use App\Models\Student;
+use App\Models\Note;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Mpdf\Mpdf;
@@ -122,14 +123,30 @@ class CustomAdminController extends Controller
         'releve_notes'=> $releve_notes]);
     }
 
-    public function accepter_demande_convention()
+
+    //demande convention image
+
+    public function accepter_demande_convention($id)
     {
+        $query = Demande::join('students', 'demandes.student_id', '=', 'students.id')
+        ->join('convention_stages', 'demandes.id', '=', 'convention_stages.demande_id')
+        ->where('demandes.id', $id)
+        ->select(
+            'demandes.*',
+            'students.*',
+            'convention_stages.*',
+            DB::raw('DATE(convention_stages.created_at) as date')
+        );
+    
+        $result = $query->get();
+        
         // Initialize Mpdf instance
         $mpdf = new Mpdf();
         
 
         // Render the HTML content from the view
-        $html = view('demande.convention_stage')->render();
+        $html = view('demande.convention_stage',
+        [ 'results'=> $result ])->render();
 
         // Write the HTML to the PDF
         $mpdf->WriteHTML($html);
@@ -137,13 +154,29 @@ class CustomAdminController extends Controller
         // Output the PDF (D = download)
         $mpdf->Output('report.pdf', 'D');
     }
-    public function accepter_attestation_scolarite()
+
+
+
+
+    public function accepter_attestation_scolarite($id)
     {
+        $query = Demande::join('students', 'demandes.student_id', '=', 'students.id')
+        ->Join('attestation_scolarites', 'demandes.id', '=', 'attestation_scolarites.demande_id')
+        ->where('demandes.id', $id)
+        ->select(
+            'demandes.*',
+            'students.*',
+            'attestation_scolarites.*',
+            DB::raw('DATE(attestation_scolarites.created_at) as date')
+        );
+    
+    $result = $query->get();
+    
         $mpdf = new Mpdf();
         
 
 
-        $html = view('demande.attestation_scolarite')->render();
+        $html = view('demande.attestation_scolarite',[ 'results'=> $result ])->render();
 
         // Write the HTML to the PDF
         $mpdf->WriteHTML($html);
@@ -151,6 +184,33 @@ class CustomAdminController extends Controller
         // Output the PDF (D = download)
         $mpdf->Output('scolarite.pdf', 'D');
         return view('demande.attestation_scolarite');
+    }
+    public function accepter_relevee_notes($id)
+    {
+        $query = Demande::join('students', 'demandes.student_id', '=', 'students.id')
+            ->Join('releve_notes', 'demandes.id', '=', 'releve_notes.demande_id')
+            ->where('demandes.id', $id)
+            ->select(
+                'demandes.*',
+                'students.*',
+                'releve_notes.*',
+                'demandes.student_id as id_student',
+                DB::raw('DATE(releve_notes.created_at) as date')
+            );
+        $result = $query->first();
+
+        $query = Note::where('student_id', $result->name)
+            ->where('annee', $result->annee1);
+        $notes= $query->get();
+        $average = $query->avg('note');
+        $mpdf = new Mpdf();
+        $html = view('demande.relevee_notes',[
+        'average'=> $average ,
+        'result' => $result,
+        'notes' => $notes,
+        ])->render();
+        $mpdf->WriteHTML($html);
+        $mpdf->Output('releve_notes.pdf', 'D');
     }
 }
 ?>

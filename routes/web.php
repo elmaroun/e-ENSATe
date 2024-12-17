@@ -56,18 +56,9 @@ Route::get('/demande-attestation', function () {
 
 Route::get('/reclamations_admin', [ReclamationController::class, 'showReclamations'])->name('reclamationadmin');;
 Route::get('/probleme_technique/{id}', [ReclamationController::class, 'showProblemeTechnique'])->name('probleme_technique');
-Route::get('/accepter_attestation_reuissite', [ReclamationController::class, 'attestationreuissitePDF'])->name('attestationreuissitePDF');
+Route::get('/accepter_attestation_reuissite/{id}', [ReclamationController::class, 'attestationreuissitePDF'])->name('attestationreuissitePDF');
 
 //fin
-
-
-
-
-
-
-
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -87,9 +78,9 @@ Route::get('/demande-details-releve-notes/{id}', [CustomAdminController::class,'
 
 
 
-Route::get('/acceptet_convention_stage', [CustomAdminController::class,'accepter_demande_convention'])->name('accepter.demande.convention');
-Route::get('/acceptet_attestation_scolarite', [CustomAdminController::class,'accepter_attestation_scolarite'])->name('accepter.demande.attestation.scolarite');
-Route::get('/acceptet_relevee_notes', [CustomAdminController::class,'accepter_relevee_notes'])->name('accepter.demande.relevee_notes');
+Route::get('/accepter_convention_stage/{id}', [CustomAdminController::class,'accepter_demande_convention'])->name('accepter.demande.convention');
+Route::get('/accepter_attestation_scolarite/{id}', [CustomAdminController::class,'accepter_attestation_scolarite'])->name('accepter.demande.attestation.scolarite');
+Route::get('/accepter_relevee_notes/{id}', [CustomAdminController::class,'accepter_relevee_notes'])->name('accepter.demande.relevee_notes');
 
 
 
