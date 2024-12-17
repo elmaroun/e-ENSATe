@@ -22,42 +22,31 @@ Route::get('/', function () {
     return to_route('welcome');
 });
 
-
+Route::middleware('auth')->group(function () {
 
 /////// Admin
 
 Route::get('/dashboard', [CustomAdminController::class, 'indexDashboard'])->name('dashboard');
 
 // Demandes & Reclamations Tables
-
 Route::get('/reclamations', [ReclamationController::class, 'showReclamations'])->name('reclamationadmin');
 Route::get('/demandes', [CustomAdminController::class,'show'])->name('traitement_demande');
-
-
-
+//
 Route::get('/probleme_technique/{id}', [ReclamationController::class, 'showProblemeTechnique'])->name('probleme_technique');
 Route::get('/accepter_attestation_reuissite', [ReclamationController::class, 'attestationreuissitePDF'])->name('attestationreuissitePDF');
-
-
-
+//
 Route::get('/demande-details-convention/{id}', [CustomAdminController::class,'show_convention'])->name('detailsdemandeconvention');
 Route::get('/demande-details-attestation-reussite/{id}', [CustomAdminController::class,'show_attestation_reussite'])->name('detailsdemandeattestationreussite');
 Route::get('/demande-details-attestation-scolarite/{id}', [CustomAdminController::class,'show_attestation_scolarite'])->name('detailsdemandeattestationscolarite');
 Route::get('/demande-details-releve-notes/{id}', [CustomAdminController::class,'show_releve_notes'])->name('detailsdemanderelevenote');
-
-
+//
 Route::get('/accepter_convention_stage/{id}', [CustomAdminController::class,'accepter_demande_convention'])->name('accepter.demande.convention');
 Route::get('/accepter_attestation_scolarite/{id}', [CustomAdminController::class,'accepter_attestation_scolarite'])->name('accepter.demande.attestation.scolarite');
 Route::get('/accepter_relevee_notes/{id}', [CustomAdminController::class,'accepter_relevee_notes'])->name('accepter.demande.relevee_notes');
 Route::get('/accepter_attestation_reuissite/{id}', [ReclamationController::class, 'attestationreuissitePDF'])->name('attestationreuissitePDF');
-
-
-
-
-
-
-
-
+//
+Route::get('/refuser_attestation_reuissite/{id}', [CustomAdminController::class, 'refuser_demande_document'])->name('Refuser_demande_document');
+});
 
 
 
@@ -123,6 +112,11 @@ Route::get('/resultat', function () {
         'noEtudiant' => session('noEtudiant'),
     ]);
 })->name('done');
+
+
+///
+Route::post('/resoudre_reclamation', [ReclamationController::class, 'resoudrereclamation'])->name('resoudreReclamation');
+
 
 
 

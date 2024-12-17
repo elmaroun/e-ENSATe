@@ -11,6 +11,10 @@ use Inertia\Inertia;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
 use Mpdf\Mpdf;
+use App\Mail\EmailEnvoyer;
+use App\Mail\EmailEnvoyerRec;
+
+use Illuminate\Support\Facades\Mail;
 
 
 class ReclamationController extends Controller
@@ -87,7 +91,43 @@ public function attestationreuissitePDF($id){
         'result' =>$result
     ])->render();
     $mpdf->WriteHTML($html);
-    $mpdf->Output('report.pdf', 'D');
+     $path = storage_path('app/public/ATTESTATION_REUISSITE.pdf'); // Par exemple dans /storage/app/public
+     $data = [
+            'subject' => ' Votre attestation de réussite ',
+            'body' => "Cher(e) {{$result->name}},
+            Nous vous adressons toutes nos félicitations pour votre réussite. Votre attestation de réussite est jointe à cet email.
+                        Si vous avez des questions ou besoin d'autres documents, n'hésitez pas à nous contacter.
+                        Cordialement,  
+                        École nationale des sciences appliquées de Tétouan - service de scolarité  
+                        ensate@uae.ac.ma
+                        Avenue de la Palestine Mhanech I, TÉTOUAN ",
+            'path'=> '\app\public\ATTESTATION_REUISSITE.pdf',
+        ];
+        Demande::where('id', $id)->update([
+            'status' => 'Traitée',
+        ]); 
+        $mpdf->Output($path, 'F');
+        Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyer($data));
+        return 'Email sent successfully';
+}
+public function resoudrereclamation ( Request $request ){
+    $data = $request->validate([
+        'sujet' => 'required|string',
+        'reponse' => 'required|string|max:1000',
+    ]);
+    $data = [
+        'subject' => "sujet: {$request->sujet}",
+        'body' => "réponse: {$request->reponse}\n\n" .
+                  "Cordialement,\n" .
+                  "École nationale des sciences appliquées de Tétouan - service de scolarité\n" .
+                  "ensate@uae.ac.ma\n" .
+                  "Avenue de la Palestine Mhanech I, TÉTOUAN"
+    ];
+
+    Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyerRec($data));
+    return 'Email sent successfully';
+
+    return redirect('/reclamations');
 
 }
     

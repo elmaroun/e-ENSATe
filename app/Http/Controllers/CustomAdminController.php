@@ -14,6 +14,16 @@ use App\Models\Reclamation;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Mail\EmailEnvoyer;
+use App\Mail\EmailEnvoyerRec;
+
+use Illuminate\Support\Facades\Mail;
+
+
+
+
+
+
 
 class CustomAdminController extends Controller
 {
@@ -42,15 +52,8 @@ class CustomAdminController extends Controller
         $trier_par="Les plus récentes";
     }
         
-    
-
-    
-
-
-
     $demande = $query->get();
-
-    
+   
         return Inertia::render('Admin/demande',[
     'demandes'=>$demande,
     'type_demande'=> $type_demande,
@@ -137,15 +140,11 @@ class CustomAdminController extends Controller
             'students.*',
             'convention_stages.*',
             DB::raw('DATE(convention_stages.created_at) as date')
-        );
-    
+        );    
         $result = $query->get();
-        
+        $result_1 = $query->first();   
         // Initialize Mpdf instance
-        $mpdf = new Mpdf();
-        
-
-        // Render the HTML content from the view
+        $mpdf = new Mpdf();       
         $html = view('demande.convention_stage',
         [ 'results'=> $result ])->render();
 
@@ -153,7 +152,26 @@ class CustomAdminController extends Controller
         $mpdf->WriteHTML($html);
 
         // Output the PDF (D = download)
-        $mpdf->Output('report.pdf', 'D');
+        $path = storage_path('app/public/scolarite.pdf'); // Par exemple dans /storage/app/public
+
+        $data = [
+            'subject' => 'Votre convention de stage',
+            'body' => "Cher(e) {$result_1->name},
+                        Nous avons le plaisir de vous transmettre votre convention de stage en pièce jointe. Veuillez la vérifier attentivement et nous faire part de toute correction nécessaire.
+
+                        Ne hésitez pas à revenir vers nous en cas de besoin.
+                        Cordialement,  
+                        École nationale des sciences appliquées de Tétouan - service de scolarité  <br><br>
+                        ensate@uae.ac.ma
+                        Avenue de la Palestine Mhanech I, TÉTOUAN ",
+            'path'=> '\app\public\scolarite.pdf',
+        ];
+        Demande::where('id', $id)->update([
+            'status' => 'Traitée',
+        ]);
+        $mpdf->Output($path, 'F');
+        Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyer($data));
+        return redirect('/demandes');
     }
 
 
@@ -169,22 +187,32 @@ class CustomAdminController extends Controller
             'students.*',
             'attestation_scolarites.*',
             DB::raw('DATE(attestation_scolarites.created_at) as date')
-        );
-    
-    $result = $query->get();
-    
+        );  
+        $result = $query->get();
+        $result_1 = $query->first(); 
         $mpdf = new Mpdf();
-        
-
-
         $html = view('demande.attestation_scolarite',[ 'results'=> $result ])->render();
-
         // Write the HTML to the PDF
         $mpdf->WriteHTML($html);
-
-        // Output the PDF (D = download)
-        $mpdf->Output('scolarite.pdf', 'D');
-        return view('demande.attestation_scolarite');
+        $path = storage_path('app/public/ATTESTATION_SCOLARITE.pdf'); // Par exemple dans /storage/app/public
+        $data = [
+            'subject' => 'Votre attestation de scolarité ',
+            'body' => "Cher(e) {{$result_1->name}},
+                        Veuillez trouver ci-joint votre attestation de scolarité.
+                        Si vous avez des questions ou besoin d'autres documents, n'hésitez pas à nous contacter.
+                        Cordialement,  
+                        École nationale des sciences appliquées de Tétouan - service de scolarité  <br><br>
+                        ensate@uae.ac.ma
+                        Avenue de la Palestine Mhanech I, TÉTOUAN ",
+            'path'=> '\app\public\ATTESTATION_SCOLARITE.pdf',
+        ];
+        Demande::where('id', $id)->update([
+            'status' => 'Traitée',
+        ]);
+        
+        $mpdf->Output($path, 'F');
+        Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyer($data));
+        return redirect('/demandes');
     }
     public function accepter_relevee_notes($id)
     {
@@ -211,7 +239,80 @@ class CustomAdminController extends Controller
         'notes' => $notes,
         ])->render();
         $mpdf->WriteHTML($html);
-        $mpdf->Output('releve_notes.pdf', 'D');
+        $path = storage_path('app/public/Releve_de_notes.pdf'); // Par exemple dans /storage/app/public
+
+        $data = [
+            'subject' => ' votre Relevé de notes',
+            'body' => "Cher(e) {$result->name},
+                        Nous vous transmettons votre relevé de notes pour la période concernée. Ce document est joint à cet email au format PDF.
+                         Si vous avez des questions ou si une erreur s'est glissée, merci de nous le signaler au plus vite.
+                        Cordialement,  
+                        École nationale des sciences appliquées de Tétouan - service de scolarité  <br><br>
+                        ensate@uae.ac.ma
+                        Avenue de la Palestine Mhanech I, TÉTOUAN ",
+            'path'=> '\app\public\Releve_de_notes.pdf',
+        ];
+        Demande::where('id', $id)->update([
+            'status' => 'Traitée',
+        ]);
+
+        $mpdf->Output($path, 'F');
+        Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyer($data));
+
+        return redirect('/demandes');
+    }
+
+
+    public function refuser_demande_document($id){
+    $result = Demande::where('id', $id)
+        ->first();
+    if ($result->type_demande == "Convention de Stage"){
+        $data = [
+            'subject' => "Refus de la demande d'attestation de stage",
+            'body' => "Votre demande d'attestation de stage a été refusée.\n\n" .
+                      "Cordialement,\n" .
+                      "École nationale des sciences appliquées de Tétouan - service de scolarité\n" .
+                      "ensate@uae.ac.ma\n" .
+                      "Avenue de la Palestine Mhanech I, TÉTOUAN"
+        ];
+        
+
+    } else if($result->type_demande == "Relevé des Notes"){
+        $data = [
+            'subject' => "Refus de la demande de relevé de notes",
+            'body' => "Votre demande de relevé de notes a été refusée.\n\n" .
+                      "Cordialement,\n" .
+                      "École nationale des sciences appliquées de Tétouan - service de scolarité\n" .
+                      "ensate@uae.ac.ma\n" .
+                      "Avenue de la Palestine Mhanech I, TÉTOUAN"
+        ];
+
+    }else if($result->type_demande == "Attestation de Scolarité"){
+        $data = [
+            'subject' => "Refus de la demande de certificat de scolarité",
+            'body' => "Votre demande de certificat de scolarité a été refusée.\n\n" .
+                      "Cordialement,\n" .
+                      "École nationale des sciences appliquées de Tétouan - service de scolarité\n" .
+                      "ensate@uae.ac.ma\n" .
+                      "Avenue de la Palestine Mhanech I, TÉTOUAN"
+        ];
+        
+
+    }else {
+        $data = [
+            'subject' => "Refus de la demande d'attestation de réussite",
+            'body' => "Votre demande d'attestation de réussite a été refusée.\n\n" .
+                      "Cordialement,\n" .
+                      "École nationale des sciences appliquées de Tétouan - service de scolarité\n" .
+                      "ensate@uae.ac.ma\n" .
+                      "Avenue de la Palestine Mhanech I, TÉTOUAN"
+        ];
+
+    }
+    Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyerRec($data));
+    return redirect('/demandes');
+
+        
     }
 
     
@@ -261,4 +362,7 @@ class CustomAdminController extends Controller
 
 
 }
+
+
+
 ?>
