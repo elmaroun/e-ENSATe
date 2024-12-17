@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Attestation_scolarite extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['annee', 'demande_id'];
 }

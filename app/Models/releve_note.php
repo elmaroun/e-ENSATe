@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Releve_note extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['annee', 'semestre', 'demande_id'];
 }

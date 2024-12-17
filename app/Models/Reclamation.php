@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Reclamation extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['student_id', 'type', 'contenu', 'sujet', 'status'];
 }

@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Demande extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['student_id', 'type', 'status'];
 }

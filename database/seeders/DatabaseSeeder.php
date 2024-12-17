@@ -23,19 +23,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-    User::factory(10)->create();
-    Student::factory(50)->create();
-    Demande::factory(40)->create();
-    Reclamation::factory(30)->create();
-    convention_stage::factory(20)->create();
-    Releve_Note::factory(10)->create();
+    User::factory(5)->create();
+    Student::factory(70)->create();
+    Demande::factory(50)->create();
+    Reclamation::factory(15)->create();
+    convention_stage::factory(10)->create();
+    Releve_Note::factory(15)->create();
     Attestation_Reussite::factory(10)->create();
-    Attestation_Scolarite::factory(10)->create();
+    Attestation_Scolarite::factory(15)->create();
     Note::factory(80)->create();
    
-        //User::factory()->create([
-            //'name' => 'Test User',
-            //'email' => 'test@example.com',
-        //]);
     }
 }

@@ -20,12 +20,12 @@ class Releve_noteFactory extends Factory
     public function definition(): array
     {
         $demande= Demande::inRandomOrder()
-        ->where('demandes.type_demande', "releve des notes")
+        ->where('demandes.type', "Relevé des Notes")
         ->first();  // Get a random existing student
 
         return [
             'demande_id' => $demande->id, 
-            'annee' => fake()->year(),
+            'annee' => fake()->numberBetween(2010, date('Y')),
             'semestre' => fake()->randomElement(['Semestre 1', 'Semestre 2']),
         ];
     }

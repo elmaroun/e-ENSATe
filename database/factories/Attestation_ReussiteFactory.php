@@ -22,13 +22,12 @@ class Attestation_ReussiteFactory extends Factory
     public function definition(): array
     {
         $demande= Demande::inRandomOrder()
-        ->where('demandes.type_demande', "attestation de reussite")
-        ->first();  // Get a random existing student
+        ->where('demandes.type', "Attestation de Réussite")
+        ->first();  
 
         return [
-            'demande_id' => $demande->id, // Generates a random demande
-            'annee1' => fake()->year(),
-            'annee2' => fake()->year(),
+            'demande_id' => $demande->id, 
+            'annee' => fake()->numberBetween(2010, date('Y')),
 
         ];
     }

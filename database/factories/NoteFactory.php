@@ -24,7 +24,9 @@ class NoteFactory extends Factory
             'student_id' => $student->id, // Generates a random student
             'note' => fake()->numberBetween(0, 20),
             'Module' => fake()->randomElement(['Algèbre 1', 'Analyse 1', 'Informatique 1', 'Physique 1', 'Programmation', 'Mécanique des Fluides', 'Algorithmique', 'Résistance des Matériaux', 'Optimisation Mathématique', 'Anglais Technique']        ),
-            'annee' => fake()->year()
+            'annee' => fake()->numberBetween(2010, date('Y')),
+            'semestre' => fake()->randomElement(['Semestre 1', 'Semestre 2']),
+
         ];
     }
 }

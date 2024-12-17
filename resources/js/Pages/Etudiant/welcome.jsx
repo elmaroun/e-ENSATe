@@ -1,15 +1,14 @@
-import { Link } from '@inertiajs/react';
-import Header from '../../Components/header';
-
 import React from 'react';
+import Header from "@/Components/Header";
+import { Head, Link } from '@inertiajs/react';
 
-const welcome= () => {
+
+export default function Welcome() {
 
     return (
       <div className="bg-white">
             <Header/>
-
-      
+            <Head title="Bienvenue" />
 
         <div className="relative isolate px-6 pt-14 lg:px-8">
           
@@ -23,21 +22,23 @@ const welcome= () => {
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <Link
-                  href="/demande"
-                  className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  href={route('form.demande')}
+                  className="rounded-md bg-blue-800 bg-opacity-90 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   Demander un Document
                 </Link>
-                <Link href="/reclamation" className="text-sm/6 font-semibold text-gray-900">
-                  Réclamation <span aria-hidden="true">→</span>
+                <Link 
+                  href={route('form.reclamation')} 
+                  className="rounded-md bg-gray-200 bg-opacity-90 px-3.5 py-2.5 text-sm font-semibold text-gray-800 shadow-sm hover:bg-gray-300 hover:text-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                >
+                  Réclamation 
                 </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
-export default welcome;
   

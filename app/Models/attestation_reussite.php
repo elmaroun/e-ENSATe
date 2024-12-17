@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class attestation_reussite extends Model
+class Attestation_reussite extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['annee', 'demande_id'];
 }

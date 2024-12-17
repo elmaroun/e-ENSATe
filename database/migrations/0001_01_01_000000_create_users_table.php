@@ -14,14 +14,12 @@ return new class extends Migration
 
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
-
         Schema::dropIfExists('reclamation');
         Schema::dropIfExists('convention_stage');
         Schema::dropIfExists('releve_notes');
         Schema::dropIfExists('attestation_reussite');
         Schema::dropIfExists('notes');
         Schema::dropIfExists('demande');
-
         Schema::dropIfExists('users');
         Schema::dropIfExists('students');
 
@@ -50,22 +48,18 @@ return new class extends Migration
         Schema::create('demandes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
-            $table->enum('type_demande', ['convention de stage ', 'attestation de scolarite', 'attestation de reussite','releve des notes']);
-            $table->enum('status',['Traitée','En cours','Non traitée']);
-            $table->date('date_demande');
+            $table->enum('type', ['Convention de Stage ', 'Attestation de Scolarité', 'Attestation de Réussite','Relevé des Notes']);
+            $table->enum('status',['Traitée','En cours','Non traitée'])->default('Non traitée');
             $table->timestamps();
 
-            $table->foreignId('admin_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade')->nullable();
         });
         Schema::create('reclamations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('admin_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade')->nullable();
-            $table->enum('type',['Problèmes techniques','Problèmes de service école','Autre problème']);
+            $table->enum('type',['Problème Technique','Problème d´un Service à l´École','Autre Problème']);
             $table->text('contenu');
             $table->string('sujet');
-            $table->date('date_reclamation');
-            $table->enum('status',['Traitée','En cours','Non traitée']);
+            $table->enum('status',['Traitée','En cours','Non traitée'])->default('Non traitée');
             $table->timestamps();
 
         });
@@ -102,16 +96,14 @@ return new class extends Migration
         Schema::create('attestation_reussites', function (Blueprint $table) {
             $table->id();
             $table->foreignId('demande_id')->constrained('demandes')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('annee1', 4);
-            $table->string('annee2', 4);
+            $table->string('annee', 4);
             $table->timestamps();
 
         });
         Schema::create('attestation_scolarites', function (Blueprint $table) {
             $table->id();
             $table->foreignId('demande_id')->constrained('demandes')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('annee1', 4);
-            $table->string('annee2', 4);
+            $table->string('annee', 4);
             $table->timestamps();
 
         });
@@ -121,6 +113,7 @@ return new class extends Migration
             $table->integer('note');
             $table->String('Module');
             $table->string('annee', 4);
+            $table->enum('semestre',['Semestre 1','Semestre 2']);
             $table->timestamps();
 
         });
@@ -152,12 +145,12 @@ return new class extends Migration
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('students');
-        Schema::dropIfExists('demande');
+        Schema::dropIfExists('demandes');
 
-        Schema::dropIfExists('reclamation');
-        Schema::dropIfExists('convention_stage');
+        Schema::dropIfExists('reclamations');
+        Schema::dropIfExists('convention_stages');
         Schema::dropIfExists('releve_notes');
-        Schema::dropIfExists('attestation_reussite');
+        Schema::dropIfExists('attestation_reussites');
         Schema::dropIfExists('notes');
 
 
