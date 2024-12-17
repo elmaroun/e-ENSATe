@@ -75,24 +75,25 @@ body{
 
     <table style="width:100%; margin-top:1cm; margin-left:0.5cm;">
         <tr> 
-            <td style="font-size:20px;"> Je soussigné, le Doyen de la Faculté des Sciences de Tétouan, atteste que</td>
+            <td style="font-size:20px;"> Je soussigné, Le Directeur de  L’Ecole Nationale des Sciences Appliquées de Tétouan, atteste que</td>
         </tr>
     </table>
+    @foreach($results as $result)
     <table style="width:60%; margin-top:1cm; margin-left:1cm;">
         <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:3cm;font-weight:bold "> l'etudiant</td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px; width:7cm;"> Ilias Maroun</td>
+            <td style="font-size:20px; width:7cm;"> {{ $result->name}}</td>
         </tr>
         <tr style="margin-bottom:0.8cm;"> 
-            <td style="font-size:20px;width:3cm;font-weight:bold "> N_Apgee</td>
+            <td style="font-size:20px;width:3cm;font-weight:bold "> N_Apogee</td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px; width:7cm;"> 21039430</td>
+            <td style="font-size:20px; width:7cm;"> {{ $result->N_Apogee}}</td>
         </tr>
         <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:3cm;font-weight:bold "> CNE</td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px; width:7cm;"> P130072182</td>
+            <td style="font-size:20px; width:7cm;"> {{ $result->CNE}}</td>
         </tr>
          <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:3cm;font-weight:bold ">Ne le </td>
@@ -103,24 +104,24 @@ body{
     </table>
     <table style="width:100%; margin-top:1cm; margin-left:0.5cm;">
         <tr> 
-            <td style="font-size:20px;"> Poursuit ses études, à ladite Faculté, au titre de l'année universitaire : 2021/2022.</td>
+            <td style="font-size:20px;"> Poursuit ses études, à L’Ecole Nationale des Sciences Appliquées de Tetouan, au titre de l'année universitaire : {{$result->annee1}}/{{$result->annee2}}</td>
         </tr>
     </table>
     <table style="width:60%; margin-top:1cm; margin-left:1cm;">
         <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:3cm;font-weight:bold "> Diplome</td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px; width:100%;"> ingenieur en genie informatique</td>
+            <td style="font-size:20px; width:100%;"> íngenieur(e) d'état</td>
         </tr>
         <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:3cm; font-weight:bold">Filiere</td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px;width:100%;">1 annee genie informatique</td>
+            <td style="font-size:20px;width:100%;">{{ $result->filiere}}</td>
         </tr>
 
 
     </table>
-   
+    @endforeach   
     
     
 </body>

@@ -83,52 +83,59 @@ body{
             <td style="font-size:20px;"> Le Directeur de  L’Ecole Nationale des Sciences Appliquées, Université Abdelmalek Essaâdi - Tétouan, atteste que :</td>
         </tr>
     </table>
+
     <table style="width:60%; margin-top:1cm; margin-left:1cm;">
         <tr style="margin-bottom:0.8cm;"> 
-            <td style="font-size:20px;width:3cm;font-weight:bold "> Mr (Mlle) </td>
+            <td style="font-size:20px;width:8cm;font-weight:bold "> Mr (Mlle) </td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px; width:7cm;"> RAJAE EL-ABID</td>
+            <td style="font-size:20px; width:7cm;"> {{ $result->name }}</td>
         </tr>
         <tr style="margin-bottom:0.8cm;"> 
-            <td style="font-size:20px;width:3cm;font-weight:bold "> Né(e) le </td>
+            <td style="font-size:20px;width:8cm;font-weight:bold "> Né(e) le </td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
             <td style="font-size:20px; width:7cm;"> 21-01-2003 a OUAZZANE</td>
         </tr>
         <tr style="margin-bottom:0.8cm;"> 
-            <td style="font-size:20px;width:3cm;font-weight:bold "> Portant le CNE </td>
+            <td style="font-size:20px;width:8cm;font-weight:bold "> Portant le CNE </td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px; width:7cm;"> R149077334</td>
+            <td style="font-size:20px; width:7cm;"> {{$result->CNE}}</td>
         </tr>
          <tr style="margin-bottom:0.8cm;"> 
-            <td style="font-size:20px;width:3cm;font-weight:bold ">Numéro Apogée  </td>
+            <td style="font-size:20px;width:8cm;font-weight:bold ">Numéro Apogée  </td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px; width:7cm;"> 149077334</td>
+            <td style="font-size:20px; width:7cm;"> {{$result->N_Apogee}}</td>
         </tr>
 
     </table>
+    @if($average > 10)
     <table style="width:100%; margin-top:1cm; margin-left:0.5cm;">
         <tr> 
-            <td style="font-size:20px;"> A réussi les examens de la licence d'études fondamentales en validant tous les modules de la filière :</td>
+            <td style="font-size:20px;"> A réussi les examens de la {{$result->niveau}}  en validant tous les modules de la filière :</td>
         </tr>
     </table>
+    @else
+    <table style="width:100%; margin-top:1cm; margin-left:0.5cm;">
+        <tr> 
+            <td style="font-size:20px;"> N'a pas réussi les examens de la {{$result->niveau}}  </td>
+        </tr>
+    </table>
+    @endif
     <table style="width:60%; margin-top:1cm; margin-left:1cm;">
         <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:3cm;font-weight:bold "> Filière </td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px; width:100%;"> INFORMATIQUE</td>
+            <td style="font-size:20px; width:100%;"> {{$result->filiere}}</td>
         </tr>
         <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:3cm; font-weight:bold">Session </td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px;width:100%;">Printemps 2020/2021</td>
+            <td style="font-size:20px;width:100%;">Printemps {{$result->annee1}}/{{$result->annee2}}</td>
         </tr>
         <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:6cm; font-weight:bold">Avec mention :</td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px;width:100%;">Passable</td>
+            <td style="font-size:20px;width:100%;">{{$average}}</td>
         </tr>
-
-
     </table>
     <div class="footer_note" style="margin-top:250px;">
         <hr>

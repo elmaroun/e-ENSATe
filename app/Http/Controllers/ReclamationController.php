@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reclamation;
+use App\Models\Demande;
+use App\Models\NOTE;
+
 use Inertia\Inertia;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
@@ -59,17 +62,31 @@ public function showProblemeTechnique($id){
 
 }  
 
-public function attestationreuissitePDF(){
-    $mpdf = new Mpdf();
-        
+public function attestationreuissitePDF($id){
 
-    // Render the HTML content from the view
-    $html = view('demande.attestation_reuissite')->render();
+    $query = Demande::join('students', 'demandes.student_id', '=', 'students.id')
+        ->Join('attestation_reussites', 'demandes.id', '=', 'attestation_reussites.demande_id')
+        ->where('demandes.id', $id)
+        ->select(
+            'demandes.*',
+            'students.*',
+            'attestation_reussites.*',
+            'demandes.student_id as id_student',
+            DB::raw('DATE(attestation_reussites.created_at) as date')
+        );
+    $result = $query->first();
 
-    // Write the HTML to the PDF
+    $query = Note::where('student_id', $result->name)
+        ->where('annee', $result->annee1);
+    $average = $query->avg('note');
+
+
+    $mpdf = new Mpdf(); 
+    $html = view('demande.attestation_reuissite',[
+        'average'=>$average ,
+        'result' =>$result
+    ])->render();
     $mpdf->WriteHTML($html);
-
-    // Output the PDF (D = download)
     $mpdf->Output('report.pdf', 'D');
 
 }

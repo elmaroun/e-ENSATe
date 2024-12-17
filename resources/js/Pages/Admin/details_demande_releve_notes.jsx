@@ -78,7 +78,7 @@ const detailsdemandesattestationscolarite =({demandes,releve_notes}) => {
               </div>
 
               <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base/7 font-semibold text-gray-900 sm:grid-cols-2 md:flex lg:gap-x-5 mt-6">
-                <a    href="#" className="rounded-md  bg-blue-800 bg-opacity-90 px-3.5 py-2.5 text-sm text-white shadow-sm hover:bg-blue-700 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+                <a    href={route('accepter.demande.relevee_notes', { id: releve_note.demande_id })} className="rounded-md  bg-blue-800 bg-opacity-90 px-3.5 py-2.5 text-sm text-white shadow-sm hover:bg-blue-700 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
                   Accepter & Envoyer le Doc <span aria-hidden="true">&rarr;</span>
                 </a>
                 <a    href="#" className="rounded-md  bg-rose-600 bg-opacity-90 px-3.5 py-2.5 text-sm text-white shadow-sm hover:bg-rose-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">

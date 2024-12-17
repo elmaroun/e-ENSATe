@@ -64,7 +64,7 @@ body{
 
     </div>
 
-    <table style="width: 100%; ">
+    <table style="width: 100%; margin-top:1.5cm;">
     <tr>
         <td  style="text-align: center; vertical-align: middle;
         font-size:40px; font-weight:bold;font-family:Antonio ">
@@ -73,6 +73,8 @@ body{
         </td>
     </tr>
     </table>
+    @foreach($results as $result)
+
    
     <hr style="height: 2px; color:black; margin-top:0; margin-bottom:0;">
     <div style="margin-top:0.1cm">
@@ -82,16 +84,16 @@ body{
     <h1 style="font-size:14px;margin-left:10px;"> Représenté par le Professeur <span style="font-weight: 900;font-size:15px;">KAMAL REKLAOUI </span> en qualité de Directeur. </h1>
     </div>
     <div style="margin-top:0.8cm">
-        <h1 style="font-size:14px;margin-left:10px;  margin-bottom:0px;">La Société :<span style="font-weight: 900;font-size:15px;">NAJA7 HOST</span></h1>
-        <h1 style="font-size:14px;margin-left:10px; margin-bottom:0px;">Adresse :<span style="font-weight: 900;font-size:15px;">immeuble 6, Av. Youssef Ibn Tachfine, Tétouan 93000</span> </h1>
-        <h1 style="font-size:14px;margin-left:10px;margin-bottom:0px;margin-top:4px;">Tél : <span style="font-weight: 900;font-size:15px;">0539714232</span> </h1>
-        <h1 style="font-size:14px;margin-left:10px;margin-bottom:0px; margin-top:4px;">Email:  <span style="font-weight: 900;font-size:15px;">info @ naja7host.com</span> </h1>
+        <h1 style="font-size:14px;margin-left:10px;  margin-bottom:0px;">La Société :<span style="font-weight: 900;font-size:15px;">{{ $result->Raison_social_de_entreprise}}</span></h1>
+        <h1 style="font-size:14px;margin-left:10px; margin-bottom:0px;">Adresse :<span style="font-weight: 900;font-size:15px;">{{ $result->adresse_entreprise}}</span> </h1>
+        <h1 style="font-size:14px;margin-left:10px;margin-bottom:0px;margin-top:4px;">Tél : <span style="font-weight: 900;font-size:15px;">{{ $result->Telephone_entreprise}}</span> </h1>
+        <h1 style="font-size:14px;margin-left:10px;margin-bottom:0px; margin-top:4px;">Email:  <span style="font-weight: 900;font-size:15px;">{{ $result->Email_entreprise}}</span> </h1>
         <h1 style="font-size:14px;margin-left:10px;margin-bottom:0px; margin-top:4px;">Représentée par Monsieur  en qualité   </h1>
         <h1 style="font-size:14px;margin-left:10px;margin-bottom:0px; margin-top:4px;">Ci-après dénommée <span style="font-weight: 900;font-size:15px;">L’ENTREPRISE</span> </h1>
     </div>
     <div style="margin-top:0.8cm">
         <h1 style="font-size:14px;margin-left:10px;"><span style="font-weight: 900;font-size:15px;">Article 1 : Engagement</span></h1>
-        <h1 style="font-size:14px;margin-left:10px; margin-bottom:0px;margin-top:4px;">L’ENTREPRISE accepte de recevoir à titre de stagiaire<span style="font-weight: 900;font-size:15px;">MAROUN ILIAS</span>  étudiant de la filière du Cycle Ingénieur<span style="font-weight: 900;font-size:15px;"> « Génie Informatique 2ème année » </span>de l’ENSA de Tétouan, Université Abdelmalek Essaâdi (Tétouan), pour une période allant du<span style="font-weight: 900;font-size:15px;"> 2024-08-01 au 2024-08-30</span></h1>
+        <h1 style="font-size:14px;margin-left:10px; margin-bottom:0px;margin-top:4px;">L’ENTREPRISE accepte de recevoir à titre de stagiaire<span style="font-weight: 900;font-size:15px;">{{ $result->name}}</span>  <span style="font-weight: 900;font-size:15px;"> « {{ $result->niveau }} - {{ $result->filiere }}» </span>de l’ENSA de Tétouan, Université Abdelmalek Essaâdi (Tétouan), pour une période allant du<span style="font-weight: 900;font-size:15px;"> {{$result->date_debut}} au {{$result->date_fin}}</span></h1>
         <h1 style="font-size:14px;margin-left:10px; margin-bottom:0px;margin-top:4px;"><span style="font-weight: 900;font-size:15px;">En aucun cas, cette convention ne pourra autoriser les étudiants à s’absenter durant la période des contrôles ou des enseignements. </span></h1>
     </div>
     <div style="margin-top:0.8cm">
@@ -107,12 +109,12 @@ body{
         <h1 style="font-size:14px;margin-left:10px; margin-bottom:0px;margin-top:4px;">Pour accompagner le Stagiaire durant son stage, et ainsi instaurer une véritable collaboration L’ENTREPRISE/Stagiaire/Etablissement, L’ENTREPRISE désigne Mme/Mr  encadrant(e) et parrain(e), pour superviser et assurer la qualité du travail fourni par le Stagiaire.</h1>
 
        <h1 style="font-size:14px;margin-left:10px; margin-bottom:0px;margin-top:4px;"> L'Etablissement désigne 
-        <span style="font-weight: 900;font-size:15px;">  ABTOY Anouar</span> en tant que tuteur qui procurera une assistance pédagogique
+        <span style="font-weight: 900;font-size:15px;">  {{$result->encadrant_ensa }}</span> en tant que tuteur qui procurera une assistance pédagogique
         </h1>
     </div>
     <div style="margin-top:0.8cm">
         <h1 style="font-size:14px;margin-left:10px;"><span style="font-weight: 900;font-size:15px;">Article 4 : Programme </span></h1>
-        <h1 style="font-size:14px;margin-left:10px; margin-bottom:0px;margin-top:4px;">Le thème du stage est: <span style="font-weight: 900;font-size:15px;">« stage d'initiation » </span>
+        <h1 style="font-size:14px;margin-left:10px; margin-bottom:0px;margin-top:4px;">Le thème du stage est: <span style="font-weight: 900;font-size:15px;">« {{ $result->sujet }} » </span>
         </h1>
 
        <h1 style="font-size:14px;margin-left:10px; margin-bottom:0px;margin-top:4px;">Ce programme a été défini conjointement par <span style="font-weight: 900;font-size:15px;">l'Etablissement, L’ENTREPRISE </span> et le <span style="font-weight: 900;font-size:15px;">Stagiaire.<span></h1> 
@@ -150,23 +152,27 @@ Cependant, l’étudiant est tenu d’informer l’école dans un délai de 24h 
     </div>
     <table class="header_table">
         <tr>
-            <td style="width: 40%; background-color:green;"></td>
-            <td class="title" style="width: 60%; font-size:14px;margin-left:0;">Fait à Tétouan en deux exemplaires, le 15-Dec-2024 15:57:16
+            <td style="width: 40%; "></td>
+            <td  style="width: 60%; font-size:14px;margin-left:0;">Fait à Tétouan en deux exemplaires, le 15-Dec-2024 15:57:16
             </td>
         </tr>
     </table>
     <table style="margin:0; padding:0; margin-top:2cm;">
         <tr>
-            <td style="width: 50%; background-color:green; font-size:20px;margin-left:0;">Nom et signature du Stagiaire : ilias maroun</td>
-            <td class="title" style="width: 50%; font-size:20px;margin-left:0;">Le Coordonnateur de la filière</td>
+            <td style="width: 30%;  font-size:15px;margin-left:0;">Nom et signature du Stagiaire : ilias maroun</td>
+            <td  style="width: 30%; font-size:15px;margin-left:0;">Le Coordonnateur de la filière</td>
         </tr>
     </table>
     <table style="margin:0; padding:0; margin-top:2cm;">
         <tr>
-            <td style="width: 50%; background-color:green; font-size:20px;margin-left:0;">Nom et signature du Stagiaire : ilias maroun</td>
-            <td class="title" style="width: 50%; font-size:20px;margin-left:0;">Le Coordonnateur de la filière</td>
+            <td style="width: 30%;  font-size:15px;margin-left:0;">Signature et cachet de L’Etablissement
+
+</td>
+            <td  style="width: 30%; font-size:15px;margin-left:0;">Signature et cachet de L’ENTREPRISE</td>
         </tr>
     </table>
+    @endforeach             
+
     
 </body>
 </html>
