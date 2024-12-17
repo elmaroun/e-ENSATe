@@ -22,7 +22,7 @@ class Attestation_ReussiteFactory extends Factory
     public function definition(): array
     {
         $demande= Demande::inRandomOrder()
-        ->where('demandes.type', "Attestation de Réussite")
+        ->where('demandes.type_demande', "Attestation de Réussite")
         ->first();  
 
         return [

@@ -22,7 +22,7 @@ class Attestation_ScolariteFactory extends Factory
     public function definition(): array
     {
         $demande= Demande::inRandomOrder()
-        ->where('demandes.type', "Attestation de Scolarité")
+        ->where('demandes.type_demande', "attestation de scolarite")
         ->first();  // Get a random existing student
 
         return [

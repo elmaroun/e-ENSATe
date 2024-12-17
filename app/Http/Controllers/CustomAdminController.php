@@ -20,7 +20,7 @@ class CustomAdminController extends Controller
     public function show(Request $request)
     {
     $query = Demande::join('students', 'demandes.student_id', '=', 'students.id')
-        ->select('demandes.*', DB::raw('DATE(demandes.date_demande) as date'), 'students.name as name', 'students.cne as cne');
+        ->select('demandes.*', DB::raw('DATE(demandes.created_at) as date'), 'students.name as name', 'students.cne as cne');
 
     if ($request->has('type_demande') && $request->type_demande != "tout demande") {
         $query->where('type_demande', $request->type_demande);

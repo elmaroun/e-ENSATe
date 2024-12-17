@@ -39,7 +39,7 @@ class ReclamationController extends Controller
             $trier_par=$request->trier_par;
         }   
         else{
-            $query->orderBy('date_reclamation', 'desc');
+            $query->orderBy('created_at', 'desc');
             $trier_par="Les plus récentes";
         }
         $reclamation = $query->get();

@@ -19,7 +19,7 @@ class Convention_stageFactory extends Factory
     public function definition(): array
     {
         $demande= Demande::inRandomOrder()
-        ->where('demandes.type', "Convention de Stage")
+        ->where('demandes.type_demande', "convention de stage ")
         ->first();  // Get a random existing student
 
         return [

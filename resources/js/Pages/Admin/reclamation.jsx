@@ -114,7 +114,7 @@ import { Head, Link } from "@inertiajs/react"
                         <div className="min-w-0 flex-auto">
                           <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Status</p>
                           {
-                        reclamation.status === 'Traitee' && (
+                        reclamation.status === 'Traitée' && (
                           <div className="mt-1 flex items-center gap-x-1.5">
                               <div className="flex-none rounded-full bg-green-500/20 p-1">
                               <div className="size-1.5 rounded-full bg-green-500" />
@@ -126,7 +126,7 @@ import { Head, Link } from "@inertiajs/react"
                      
                        
                         
-                          {reclamation.status === 'Non Traitee' && (
+                          {reclamation.status === 'Non traitée' && (
                               <div className="mt-1 flex items-center gap-x-1.5">
                                  <div className="flex-none rounded-full bg-red-500/20 p-1">
                               <div className="size-1.5 rounded-full bg-red-500" />
@@ -136,7 +136,7 @@ import { Head, Link } from "@inertiajs/react"
                         )
                           }
                       
-                            {reclamation.status === 'EN Cours' && (
+                            {reclamation.status === 'En cours' && (
                               <div className="mt-1 flex items-center gap-x-1.5">
                                   <div className="flex-none rounded-full bg-blue-500/20 p-1">
                                   <div className="size-1.5 rounded-full bg-blue-500" />

@@ -48,7 +48,7 @@ return new class extends Migration
         Schema::create('demandes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
-            $table->enum('type', ['Convention de Stage ', 'Attestation de Scolarité', 'Attestation de Réussite','Relevé des Notes']);
+            $table->enum('type_demande', ['convention de stage ', 'attestation de scolarite', 'attestation de reussite','releve des notes']);
             $table->enum('status',['Traitée','En cours','Non traitée'])->default('Non traitée');
             $table->timestamps();
 
@@ -56,7 +56,7 @@ return new class extends Migration
         Schema::create('reclamations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade')->onUpdate('cascade');
-            $table->enum('type',['Problème Technique','Problème d´un Service à l´École','Autre Problème']);
+            $table->enum('type',['Problèmes techniques','Problèmes de service école','Autre problème']);
             $table->text('contenu');
             $table->string('sujet');
             $table->enum('status',['Traitée','En cours','Non traitée'])->default('Non traitée');
