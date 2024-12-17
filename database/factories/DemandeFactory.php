@@ -21,7 +21,7 @@ class DemandeFactory extends Factory
 
         return [
            'student_id' => $student->id, // Creates a related student
-            'type_demande' => fake()->randomElement(['convention de stage ', 'attestation de scolarite', 'attestation de reussite','releve des notes']),
+            'type_demande' => fake()->randomElement(['Convention de Stage', 'Attestation de Scolarité', 'Attestation de Réussite','Relevé des Notes']),
             'status' => fake()->randomElement(['Traitée', 'En cours', 'Non traitée']),
         ];
     }

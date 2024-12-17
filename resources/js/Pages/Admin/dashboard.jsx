@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../../Components/header';
+import HeaderAdmin from '@/Components/HeaderAdmin';
 
 const links = [
     { name: 'Open roles', href: '#' },
@@ -21,7 +22,7 @@ const links = [
     
 
     <div className="relative isolate bg-white py-24 sm:py-32">
-        <Header />
+        <HeaderAdmin/>
         <div
           aria-hidden="true"
           className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"

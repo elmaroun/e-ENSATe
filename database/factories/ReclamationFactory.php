@@ -23,7 +23,7 @@ class ReclamationFactory extends Factory
 
         return [
             'student_id' => $student->id,
-            'type' => fake()->randomElement(['Problèmes techniques','Problèmes de service école','Autre problème']),
+            'type' => fake()->randomElement(['Problème Technique','Problème de Service à l´école','Autre Problème']),
             'status' => fake()->randomElement(['Traitée', 'En cours', 'Non traitée']),
             'contenu' => fake()->paragraph(),
             'sujet' => fake()->sentence(),

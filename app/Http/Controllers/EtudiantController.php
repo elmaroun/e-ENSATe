@@ -26,7 +26,7 @@ class EtudiantController extends Controller
             'email' => 'required|email',
             'CNE' => 'required|string',
             'N_Apogee' => 'required|integer',
-            'type' => ['required', Rule::in(['Problème Technique', 'Problème d´un Service à l´École', 'Autre Problème'])],
+            'type' => ['required', Rule::in(['Problème Technique', 'Problème de Service à l´école', 'Autre Problème'])],
             'contenu' => 'required|string|max:1000',
             'sujet' => 'required|string|max:255',
         ]);
@@ -59,7 +59,7 @@ class EtudiantController extends Controller
             'email' => 'required|email',
             'CNE' => 'required|string',
             'N_Apogee' => 'required|integer',
-            'type' => ['required', Rule::in(['Convention de Stage', 'Attestation de Scolarité', 'Attestation de Réussite', 'Relevé des Notes'])],
+            'type_demande' => ['required', Rule::in(['Convention de Stage', 'Attestation de Scolarité', 'Attestation de Réussite', 'Relevé des Notes'])],
         ]);
 
         $student = Student::where('email', $data['email'])
@@ -75,7 +75,7 @@ class EtudiantController extends Controller
 
         $demande = Demande::create($data);
 
-        if ($data['type'] === 'Attestation de Scolarité') {
+        if ($data['type_demande'] === 'Attestation de Scolarité') {
 
             $currentMonth = now()->month; 
             $year = in_array($currentMonth, [9, 10, 11, 12]) ? now()->year : now()->year - 1;
@@ -87,15 +87,15 @@ class EtudiantController extends Controller
             return to_route('done')->with('message1', 'Réussi');
         }
 
-        if ($data['type'] === 'Relevé des Notes')
+        if ($data['type_demande'] === 'Relevé des Notes')
         {
             return to_route('form.releveNotes')->with('demande_id', $demande->id);
         } 
-        else if ($data['type'] === 'Convention de Stage') 
+        else if ($data['type_demande'] === 'Convention de Stage') 
         {
             return to_route('form.conventionStage')->with('demande_id', $demande->id);
         } 
-        else if ($data['type'] === 'Attestation de Réussite') 
+        else if ($data['type_demande'] === 'Attestation de Réussite') 
         {
             return to_route('form.attestationReussite')->with('demande_id', $demande->id);
         }

@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from '../../Components/header';
 import { Head, Link } from "@inertiajs/react"
+import HeaderAdmin from '@/Components/HeaderAdmin';
 
   const reclamation= ({reclamations ,type,trier_par}) => {
     return (
         <div className="bg-white">
-            <Header/>
+            <HeaderAdmin/>
             <Head title="Réclamation" />
             <div className="relative isolate px-6 pt-14 lg:px-8">
                 <h2 className="mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900">
@@ -30,8 +31,8 @@ import { Head, Link } from "@inertiajs/react"
                                   >
                                     <option hidden >{type}</option>
                                       <option value="Tous les réclamation">Tous les réclamation</option>
-                                      <option value="Problèmes techniques">Problème technique</option>
-                                      <option value="Problèmes de service école">Problèmes de service école</option>
+                                      <option value="Problème Technique">Problème technique</option>
+                                      <option value="Problème de Service à l´école">Problème de Service à l´école</option>
                                       <option value="Autre Problème" >Autre Problème</option>
                                   </select>
                               </div>

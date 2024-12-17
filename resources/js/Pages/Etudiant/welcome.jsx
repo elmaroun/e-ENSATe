@@ -1,13 +1,14 @@
 import React from 'react';
 import Header from "@/Components/Header";
 import { Head, Link } from '@inertiajs/react';
+import HeaderAdmin from '@/Components/HeaderAdmin';
 
 
 export default function Welcome() {
 
     return (
       <div className="bg-white">
-            <Header/>
+            <HeaderAdmin/>
             <Head title="Bienvenue" />
 
         <div className="relative isolate px-6 pt-14 lg:px-8">

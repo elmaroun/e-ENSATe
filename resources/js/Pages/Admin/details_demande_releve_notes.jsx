@@ -1,3 +1,4 @@
+import HeaderAdmin from '@/Components/HeaderAdmin';
 import Header from '../../Components/header';
 import { Head } from "@inertiajs/react";
 
@@ -6,7 +7,7 @@ const detailsdemandesattestationscolarite =({demandes,releve_notes}) => {
 
   return (
       <div className="bg-white">
-          <Header/>
+          <HeaderAdmin/>
           <Head title="Demande" />
   
           <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -59,7 +60,7 @@ const detailsdemandesattestationscolarite =({demandes,releve_notes}) => {
 
               <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                   <dd className="text-sm/6 font-medium text-gray-900">Type de demande</dd>
-                  <dd className="mt-1 text-sm/6 text-gray-700  sm:mt-0">releve des notes</dd>
+                  <dd className="mt-1 text-sm/6 text-gray-700  sm:mt-0">Relevé des Notes</dd>
                   <dd className="text-sm/6 font-medium text-gray-900">Date de demande</dd>
                   <dd className="mt-1 text-sm/6 text-gray-700  sm:mt-0">{releve_note.date}</dd>
                 </div>  

@@ -1,3 +1,4 @@
+import HeaderAdmin from '@/Components/HeaderAdmin';
 import Header from '../../Components/header';
 import { Head } from "@inertiajs/react";
 
@@ -6,7 +7,7 @@ const probleme_technique= ({reclamations,id}) => {
 
   return (
       <div className="bg-white">
-          <Header/>
+          <HeaderAdmin/>
           <Head title="Réclamation" />
   
           <div className="relative isolate px-6 pt-14 lg:px-8">

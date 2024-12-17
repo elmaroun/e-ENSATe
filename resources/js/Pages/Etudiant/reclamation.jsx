@@ -66,7 +66,7 @@ export default function Reclamation() {
                     >
                       <option value="" hidden>Type de Réclamation</option>
                       <option value="Problème Technique">Problème Technique</option>
-                      <option value="Problème d´un Service à l´École">Problème d'un Service à l'École</option>
+                      <option value="Problème de Service à l´école">Problème de Service à l´école</option>
                       <option value="Autre Problème">Autre Problème</option>
                     </select>
                   </div>

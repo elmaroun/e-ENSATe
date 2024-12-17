@@ -20,7 +20,7 @@ class Releve_noteFactory extends Factory
     public function definition(): array
     {
         $demande= Demande::inRandomOrder()
-        ->where('demandes.type_demande', "releve des notes")
+        ->where('demandes.type_demande', "Relevé des Notes")
         ->first();  // Get a random existing student
 
         return [

@@ -1,9 +1,10 @@
 import Header from '../../Components/header';
 import { Head, Link } from "@inertiajs/react"
 import reclamation from '../Etudiant/reclamation';
+import HeaderAdmin from '@/Components/HeaderAdmin';
 
 const MyLink = ({ demande }) => {
-  if ( demande.type_demande === "releve des notes") {
+  if ( demande.type_demande === "Relevé des Notes") {
     return <Link href={route('detailsdemanderelevenote', { id: demande.id })}>                 
                     <li key={demande.email} className="grid grid-cols-6 gap-x-10 p-5 items-center justify-center hover:bg-gray-100">
 
@@ -72,7 +73,7 @@ const MyLink = ({ demande }) => {
                     <hr></hr>
                     </Link>
                     ;
-  } else if(demande.type_demande=== "convention de stage") {
+  } else if(demande.type_demande=== "Convention de Stage") {
     return      <Link href={route('detailsdemandeconvention', { id: demande.id })}>                 
     <li key={demande.email} className="grid grid-cols-6 gap-x-10 p-5 items-center justify-center hover:bg-gray-100">
 
@@ -141,7 +142,7 @@ const MyLink = ({ demande }) => {
     <hr></hr>
     </Link>
     ;
-  }else if (demande.type_demande=== "attestation de reussite"){
+  }else if (demande.type_demande=== "Attestation de Réussite"){
     return   <Link href={route('detailsdemandeattestationreussite', { id: demande.id })}>                 
     <li key={demande.email} className="grid grid-cols-6 gap-x-10 p-5 items-center justify-center hover:bg-gray-100">
 
@@ -211,7 +212,7 @@ const MyLink = ({ demande }) => {
     </Link>
     ;
  
-  }else if (demande.type_demande=== "attestation de scolarite"){
+  }else if (demande.type_demande=== "Attestation de Scolarité"){
     return   <Link href={route('detailsdemandeattestationscolarite', { id: demande.id })}>                 
     <li key={demande.email} className="grid grid-cols-6 gap-x-10 p-5 items-center justify-center hover:bg-gray-100">
 
@@ -287,7 +288,7 @@ const MyLink = ({ demande }) => {
   const Reclamation = ({ demandes ,type_demande,trier_par}) => {
     return (
         <div className="bg-white">
-            <Header/>
+            <HeaderAdmin/>
             <Head title="Demandes" />
             <div className="relative isolate px-6 pt-14 lg:px-8">
                 <h2 className="mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900">
@@ -311,10 +312,10 @@ const MyLink = ({ demande }) => {
                                   className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-700 sm:text-sm/6"
                                   >   <option hidden >{type_demande}</option>
                                       <option value="tout demande">Tous les demandes </option>
-                                      <option value="attestation de scolarite">Attestation de Scolarité</option>
-                                      <option value="attestation de reussite">Attestation de Réussite</option>
-                                      <option value="releve des notes">Relevé des Notes</option>
-                                      <option value="convention de stage">Convention de Stage</option>
+                                      <option value="Attestation de Scolarité">Attestation de Scolarité</option>
+                                      <option value="Attestation de Réussite">Attestation de Réussite</option>
+                                      <option value="Relevé des Notes">Relevé des Notes</option>
+                                      <option value="Convention de Stage">Convention de Stage</option>
                                   </select>
                               </div>
                     </div>                   

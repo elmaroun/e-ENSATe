@@ -77,6 +77,7 @@ export default function ConventionStage({ demande_id }) {
                     id="Raison_social_de_entreprise"
                     name="Raison_social_de_entreprise"
                     type="text"
+                    required
                     autoComplete="off"
                     value={data.Raison_social_de_entreprise} 
                     onChange={(e) => setData("Raison_social_de_entreprise", e.target.value)}
@@ -94,6 +95,7 @@ export default function ConventionStage({ demande_id }) {
                     id="Secteur_entreprise"
                     name="Secteur_entreprise"
                     type="text"
+                    required
                     autoComplete="off"
                     value={data.Secteur_entreprise} 
                     onChange={(e) => setData("Secteur_entreprise", e.target.value)}
@@ -113,6 +115,7 @@ export default function ConventionStage({ demande_id }) {
                     id="Telephone_entreprise"
                     name="Telephone_entreprise"
                     type="text"
+                    required
                     autoComplete="off"
                     value={data.Telephone_entreprise} 
                     onChange={(e) => setData("Telephone_entreprise", e.target.value)}
@@ -129,7 +132,8 @@ export default function ConventionStage({ demande_id }) {
                   <input
                     id="Email_entreprise"
                     name="Email_entreprise"
-                    type="text"
+                    type="email"
+                    required
                     autoComplete="off"
                     value={data.Email_entreprise} 
                     onChange={(e) => setData("Email_entreprise", e.target.value)}
@@ -146,6 +150,7 @@ export default function ConventionStage({ demande_id }) {
                     id="adresse_entreprise"
                     name="adresse_entreprise"
                     type="text"
+                    required
                     autoComplete="off"
                     value={data.adresse_entreprise} 
                     onChange={(e) => setData("adresse_entreprise", e.target.value)}
@@ -162,6 +167,7 @@ export default function ConventionStage({ demande_id }) {
                     id="ville_entreprise"
                     name="ville_entreprise"
                     type="text"
+                    required
                     autoComplete="off"
                     value={data.ville_entreprise} 
                     onChange={(e) => setData("ville_entreprise", e.target.value)}
@@ -178,6 +184,7 @@ export default function ConventionStage({ demande_id }) {
                     id="representant_entreprise"
                     name="representant_entreprise"
                     type="text"
+                    required
                     autoComplete="off"
                     value={data.representant_entreprise} 
                     onChange={(e) => setData("representant_entreprise", e.target.value)}
@@ -194,6 +201,7 @@ export default function ConventionStage({ demande_id }) {
                     id="fonction_representant"
                     name="fonction_representant"
                     type="text"
+                    required
                     autoComplete="off"
                     value={data.fonction_representant} 
                     onChange={(e) => setData("fonction_representant", e.target.value)}
@@ -211,6 +219,7 @@ export default function ConventionStage({ demande_id }) {
                     id="encadrant_entreprise"
                     name="encadrant_entreprise"
                     type="text"
+                    required
                     autoComplete="off"
                     value={data.encadrant_entreprise} 
                     onChange={(e) => setData("encadrant_entreprise", e.target.value)}
@@ -231,6 +240,7 @@ export default function ConventionStage({ demande_id }) {
                     id="fonction_encadrant"
                     name="fonction_encadrant"
                     type="text"
+                    required
                     autoComplete="off"
                     value={data.fonction_encadrant} 
                     onChange={(e) => setData("fonction_encadrant", e.target.value)}
@@ -249,6 +259,7 @@ export default function ConventionStage({ demande_id }) {
                     id="telephone_encadrant"
                     name="telephone_encadrant"
                     type="text"
+                    required
                     autoComplete="off"
                     value={data.telephone_encadrant} 
                     onChange={(e) => setData("telephone_encadrant", e.target.value)}
@@ -264,7 +275,8 @@ export default function ConventionStage({ demande_id }) {
                   <input
                     id="email_encadrant"
                     name="email_encadrant"
-                    type="text"
+                    type="email"
+                    required
                     autoComplete="off"
                     value={data.email_encadrant} 
                     onChange={(e) => setData("email_encadrant", e.target.value)}
@@ -282,6 +294,7 @@ export default function ConventionStage({ demande_id }) {
                   <select
                     id="encadrant_ensa"
                     name="encadrant_ensa"
+                    required
                     autoComplete="off"
                     value={data.encadrant_ensa} 
                     onChange={(e) => setData("encadrant_ensa", e.target.value)}
@@ -302,6 +315,7 @@ export default function ConventionStage({ demande_id }) {
                       id="date_debut"
                       name="date_debut"
                       type="date"
+                      required
                       autoComplete="off"
                       value={data.date_debut || ""} 
                       min={today} 
@@ -323,6 +337,7 @@ export default function ConventionStage({ demande_id }) {
                     id="date_fin"
                     name="date_fin"
                     type="date"
+                    required
                     autoComplete="off"
                     value={data.date_fin} 
                     min={minEndDate} 
@@ -342,6 +357,7 @@ export default function ConventionStage({ demande_id }) {
                     id="sujet"
                     name="sujet"
                     rows={5}
+                    required
                     autoComplete="off"
                     value={data.sujet} 
                     onChange={(e) => setData("sujet", e.target.value)}

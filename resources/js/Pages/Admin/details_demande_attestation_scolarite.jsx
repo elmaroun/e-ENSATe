@@ -1,3 +1,4 @@
+import HeaderAdmin from '@/Components/HeaderAdmin';
 import Header from '../../Components/header';
 import { Head } from "@inertiajs/react";
 
@@ -6,7 +7,7 @@ const detailsdemandesattestationscolarite =({demandes,attestation_scolarites,id}
 
   return (
       <div className="bg-white">
-          <Header/>
+          <HeaderAdmin/>
           <Head title="Demande" />
   
           <div className="relative isolate px-6 pt-14 lg:px-8">
