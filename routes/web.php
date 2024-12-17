@@ -26,9 +26,7 @@ Route::get('/', function () {
 
 /////// Admin
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Admin/Dashboard');
-})->name('dashboard');
+Route::get('/dashboard', [CustomAdminController::class, 'indexDashboard'])->name('dashboard');
 
 // Demandes & Reclamations Tables
 

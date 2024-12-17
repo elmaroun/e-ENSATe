@@ -57,9 +57,4 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
-        //delete this 
-    Route::get('/logout', function () {
-            Auth::logout();
-            return redirect('/login'); // Redirect to the login page or home after logout
-        })->name('logout');
 });

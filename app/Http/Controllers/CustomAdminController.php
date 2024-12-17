@@ -1,18 +1,19 @@
 <?php
 namespace App\Http\Controllers;
+use Mpdf\Mpdf;
+use App\Models\Note;
+use Inertia\Inertia;
 use App\Models\Demande;
 use App\Models\Student;
-use App\Models\Note;
-use Illuminate\Support\Facades\DB;
+use App\Models\Reclamation;
+
+
+
+
+
+
 use Illuminate\Http\Request;
-use Mpdf\Mpdf;
-
-
-
-
-
-
-use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
 
 class CustomAdminController extends Controller
 {
@@ -22,12 +23,12 @@ class CustomAdminController extends Controller
     $query = Demande::join('students', 'demandes.student_id', '=', 'students.id')
         ->select('demandes.*', DB::raw('DATE(demandes.created_at) as date'), 'students.name as name', 'students.cne as cne');
 
-    if ($request->has('type_demande') && $request->type_demande != "tout demande") {
+    if ($request->has('type_demande') && $request->type_demande != "Tous les demandes") {
         $query->where('type_demande', $request->type_demande);
         $type_demande=$request->type_demande;
     }else{
 
-        $type_demande='tout demande';
+        $type_demande='Tous les demandes';
     }
     if ($request->has('trier_par') && $request->trier_par =="Status de demande"){
         $query->orderBy('status', 'desc');
@@ -212,5 +213,52 @@ class CustomAdminController extends Controller
         $mpdf->WriteHTML($html);
         $mpdf->Output('releve_notes.pdf', 'D');
     }
+
+    
+        public function indexDashboard()
+        {
+            // Demandes
+            $totalDemandes = Demande::count();
+            $demandesTraitees = Demande::where('status', 'Traitée')->count();
+            $demandesEnCours = Demande::where('status', 'En Cours')->count();
+            $demandesNonTraitees = Demande::where('status', 'Non Traitée')->count();
+    
+            $attestationScolarite = Demande::where('type_demande', 'Attestation de Scolarité')->count();
+            $attestationReussite = Demande::where('type_demande', 'Attestation de Réussite')->count();
+            $releveNotes = Demande::where('type_demande', 'Relevé des Notes')->count();
+            $conventionStage = Demande::where('type_demande', 'Convention de Stage')->count();
+    
+            // Réclamations
+            $totalReclamations = Reclamation::count();
+            $reclamationsTraitees = Reclamation::where('status', 'Traitée')->count();
+            $reclamationsEnCours = Reclamation::where('status', 'En Cours')->count();
+            $reclamationsNonTraitees = Reclamation::where('status', 'Non Traitée')->count();
+    
+            $problemeTechnique = Reclamation::where('type', 'Problème Technique')->count();
+            $problemeService = Reclamation::where('type', 'Problème de Service à l´école')->count();
+            $autreProbleme = Reclamation::where('type', 'Autre Problème')->count();
+    
+            return Inertia::render('Admin/Dashboard', [
+                'totalDemandes' => $totalDemandes,
+                'demandesTraitees' => $demandesTraitees,
+                'demandesEnCours' => $demandesEnCours,
+                'demandesNonTraitees' => $demandesNonTraitees,
+                'attestationScolarite' => $attestationScolarite,
+                'attestationReussite' => $attestationReussite,
+                'releveNotes' => $releveNotes,
+                'conventionStage' => $conventionStage,
+    
+                'totalReclamations' => $totalReclamations,
+                'reclamationsTraitees' => $reclamationsTraitees,
+                'reclamationsEnCours' => $reclamationsEnCours,
+                'reclamationsNonTraitees' => $reclamationsNonTraitees,
+                'problemeTechnique' => $problemeTechnique,
+                'problemeService' => $problemeService,
+                'autreProbleme' => $autreProbleme,
+            ]);
+        }
+
+
+
 }
 ?>

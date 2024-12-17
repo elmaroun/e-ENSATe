@@ -294,7 +294,7 @@ const MyLink = ({ demande }) => {
                 <h2 className="mt-10 text-center text-3xl/9 font-bold tracking-tight text-gray-900">
                     Demandes de Documents
                 </h2>
-              <div className="mx-auto max-w-4xl pb-32 pt-1;;2 sm:py-15 lg:pb-52 pt-15 ">
+              <div className="mx-auto max-w-4xl pb-32 pt-12 sm:py-15 lg:pb-52 pt-15 ">
 
 
                   <form method="get" action={route('traitement_demande')} id="filterForm" className="my-10 flex justify-between gap-x-8">
@@ -311,7 +311,7 @@ const MyLink = ({ demande }) => {
                                   autoComplete="type_demande"
                                   className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-700 sm:text-sm/6"
                                   >   <option hidden >{type_demande}</option>
-                                      <option value="tout demande">Tous les demandes </option>
+                                      <option value="Tous les demandes">Tous les demandes </option>
                                       <option value="Attestation de Scolarité">Attestation de Scolarité</option>
                                       <option value="Attestation de Réussite">Attestation de Réussite</option>
                                       <option value="Relevé des Notes">Relevé des Notes</option>
@@ -342,7 +342,10 @@ const MyLink = ({ demande }) => {
 
 
                     <div className="w-20"></div>
+                    <div className="flex-1 max-w-sm">
 
+                              
+                  </div>
 
                   </form>
 
