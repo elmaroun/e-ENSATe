@@ -46,6 +46,8 @@ Route::get('/accepter_relevee_notes/{id}', [CustomAdminController::class,'accept
 Route::get('/accepter_attestation_reuissite/{id}', [ReclamationController::class, 'attestationreuissitePDF'])->name('attestationreuissitePDF');
 //
 Route::get('/refuser_attestation_reuissite/{id}', [CustomAdminController::class, 'refuser_demande_document'])->name('Refuser_demande_document');
+Route::post('/resoudre_reclamation', [ReclamationController::class, 'resoudrereclamation'])->name('resoudreReclamation');
+
 });
 
 
@@ -114,8 +116,6 @@ Route::get('/resultat', function () {
 })->name('done');
 
 
-///
-Route::post('/resoudre_reclamation', [ReclamationController::class, 'resoudrereclamation'])->name('resoudreReclamation');
 
 
 
