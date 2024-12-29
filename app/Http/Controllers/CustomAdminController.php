@@ -5,18 +5,19 @@ use App\Models\Note;
 use Inertia\Inertia;
 use App\Models\Demande;
 use App\Models\Student;
-use App\Models\Reclamation;
-
-
-
-
-
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Mail\EmailEnvoyer;
+
+
+
+
+
+
+use App\Models\Reclamation;
+use App\Mail\DemandeRefuser;
+use Illuminate\Http\Request;
 use App\Mail\EmailEnvoyerRec;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -300,51 +301,43 @@ class CustomAdminController extends Controller
     public function refuser_demande_document($id){
     $result = Demande::where('id', $id)
         ->first();
+
+        $demande = Demande::join('students', 'demandes.student_id', '=', 'students.id')
+        ->where('demandes.id', $id)
+        ->select('students.email', 'students.name')
+        ->firstOrFail();
+
+
     if ($result->type_demande == "Convention de Stage"){
         $data = [
-            'subject' => "Refus de la demande d'attestation de stage",
-            'body' => "Votre demande d'attestation de stage a été refusée.\n\n" .
-                      "Cordialement,\n" .
-                      "École nationale des sciences appliquées de Tétouan - service de scolarité\n" .
-                      "ensate@uae.ac.ma\n" .
-                      "Avenue de la Palestine Mhanech I, TÉTOUAN"
+            'sujet' => "Refus de la demande d'attestation de stage",
+            'reponse' => "Votre demande d'attestation de stage a été refusée.",
         ];
         
 
     } else if($result->type_demande == "Relevé des Notes"){
         $data = [
-            'subject' => "Refus de la demande de relevé de notes",
-            'body' => "Votre demande de relevé de notes a été refusée.\n\n" .
-                      "Cordialement,\n" .
-                      "École nationale des sciences appliquées de Tétouan - service de scolarité\n" .
-                      "ensate@uae.ac.ma\n" .
-                      "Avenue de la Palestine Mhanech I, TÉTOUAN"
+            'sujet' => "Refus de la demande de relevé de notes",
+            'reponse' => "Votre demande de relevé des notes a été refusée.",
         ];
 
     }else if($result->type_demande == "Attestation de Scolarité"){
         $data = [
-            'subject' => "Refus de la demande de certificat de scolarité",
-            'body' => "Votre demande de certificat de scolarité a été refusée.\n\n" .
-                      "Cordialement,\n" .
-                      "École nationale des sciences appliquées de Tétouan - service de scolarité\n" .
-                      "ensate@uae.ac.ma\n" .
-                      "Avenue de la Palestine Mhanech I, TÉTOUAN"
+            'sujet' => "Refus de la demande de certificat de scolarité",
+            'reponse' => "Votre demande d'attestation de scolarité a été refusée.",
         ];
         
 
     }else {
         $data = [
-            'subject' => "Refus de la demande d'attestation de réussite",
-            'body' => "Votre demande d'attestation de réussite a été refusée.\n\n" .
-                      "Cordialement,\n" .
-                      "École nationale des sciences appliquées de Tétouan - service de scolarité\n" .
-                      "ensate@uae.ac.ma\n" .
-                      "Avenue de la Palestine Mhanech I, TÉTOUAN"
+            'sujet' => "Refus de la demande d'attestation de réussite",
+            'reponse' => "Votre demande d'attestation de réussite a été refusée.",
         ];
 
     }
-    Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyerRec($data));
-    return redirect('/demandes');
+    Mail::to($demande->email)->send(new DemandeRefuser($data));
+    Demande::where('id', $id)->update(['status' => 'Traitée']);
+    return to_route('traitement_demande');
 
         
     }
