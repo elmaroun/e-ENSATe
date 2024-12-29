@@ -36,7 +36,7 @@ class ReclamationController extends Controller
     
             $type_reclamation='Tous les réclamation';
         }
-        if ($request->has('trier_par') && $request->trier_par =="Status de demande"){
+        if ($request->has('trier_par') && $request->trier_par =="Status de réclamation"){
             $query->orderBy('status', 'desc');
             $trier_par=$request->trier_par;
         }elseif($request->has('trier_par') && $request->trier_par =="Etudiant"){
@@ -55,17 +55,25 @@ class ReclamationController extends Controller
     'trier_par'=>$trier_par]);
 }
 
-public function showProblemeTechnique($id){
-    $query = Reclamation::join('students', 'reclamations.student_id', '=', 'students.id')
-    ->where('reclamations.id', $id)
-    ->select('reclamations.*', DB::raw('DATE(reclamations.created_at) as date'), 'students.*');
-    $reclamation = $query->get();
+public function showProblemeTechnique($id)
+{
+    $reclamation = Reclamation::join('students', 'reclamations.student_id', '=', 'students.id')
+        ->where('reclamations.id', $id)
+        ->select('reclamations.*', DB::raw('DATE(reclamations.created_at) as date'), 'students.*')
+        ->first(); 
 
-    return Inertia::render('Admin/probleme_technique',
-     ['reclamations'=>$reclamation,
-    'id'=>$id,]);
 
-}  
+    if ($reclamation && $reclamation->status === 'Non traitée') {
+        Reclamation::where('id', $id)->update(['status' => 'En cours']);
+        
+    }
+
+    return Inertia::render('Admin/probleme_technique', [
+        'reclamations' => [$reclamation], 
+        'id' => $id,
+    ]);
+}
+
 
 public function attestationreuissitePDF($id){
 
@@ -114,25 +122,34 @@ public function attestationreuissitePDF($id){
 
 
 
-public function resoudrereclamation ( Request $request ){
-    $data = $request->validate([
+public function resoudrereclamation(Request $request)
+{
+    $data1 = $request->validate([
         'sujet' => 'required|string',
         'reponse' => 'required|string|max:1000',
+        'reclamation_id' => 'required|exists:reclamations,id', // Ensure the reclamation exists
     ]);
+
+    // Fetch the reclamation and its associated student
+    $reclamation = Reclamation::join('students', 'reclamations.student_id', '=', 'students.id')
+        ->where('reclamations.id', $data1['reclamation_id'])
+        ->select('students.email', 'students.name', 'reclamations.type')
+        ->firstOrFail();
+
+    // Prepare the email content
     $data = [
-        'subject' => "sujet: {$request->sujet}",
-        'body' => "réponse: {$request->reponse}\n\n" .
-                  "Cordialement,\n" .
-                  "École nationale des sciences appliquées de Tétouan - service de scolarité\n" .
-                  "ensate@uae.ac.ma\n" .
-                  "Avenue de la Palestine Mhanech I, TÉTOUAN"
+        'sujet' => $data1['sujet'],
+        'reponse' => $data1['reponse'],
+        'student_name' => $reclamation->name,
+        'reclamation_type' => $reclamation->type,
     ];
 
-    Mail::to('elhauari.imohamed@etu.uae.ac.ma')->send(new EmailEnvoyerRec($data));
-    return 'Email sent successfully';
+    // Send the email to the student's email address
+    Mail::to($reclamation->email)->send(new EmailEnvoyerRec($data));
+    Reclamation::where('id', $data1['reclamation_id'])->update(['status' => 'Traitée']);
 
-    return redirect('/reclamations');
-
+    // Redirect back with a success message
+    return to_route('reclamationadmin')->with('success', 'Réponse envoyée avec succès.');
 }
     
 }

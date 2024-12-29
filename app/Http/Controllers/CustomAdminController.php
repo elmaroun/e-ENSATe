@@ -66,15 +66,20 @@ class CustomAdminController extends Controller
         $query1 = Demande::join('students', 'demandes.student_id', '=', 'students.id')
             ->where('demandes.id', $id)
             ->select('demandes.*',  'students.*');
-        $demande = $query1->get();
+        $demande = $query1->first();
         $query2 = Demande::join('convention_stages', 'demandes.id', '=', 'convention_stages.demande_id')
             ->where('demandes.id', $id)
             ->select('convention_stages.*',DB::raw('DATE(convention_stages.created_at) as date'));
         $convetion = $query2->get();
 
+        if ($demande && $demande->status === 'Non traitée') {
+            Demande::where('id', $id)->update(['status' => 'En cours']);
+            
+        }
+
 
         return Inertia::render('Admin/details_demande_convention',
-    ['demandes'=>$demande,
+    ['demandes'=>[$demande],
     'id'=>$id,
     'conventions'=> $convetion]);
     }
@@ -85,7 +90,7 @@ class CustomAdminController extends Controller
         $query1 = Demande::join('students', 'demandes.student_id', '=', 'students.id')
             ->where('demandes.id', $id)
             ->select('demandes.*',  'students.*');
-        $demande = $query1->get();
+        $demande = $query1->first();
         $query2 = Demande::join('attestation_reussites', 'demandes.id', '=', 'attestation_reussites.demande_id')
             ->where('demandes.id', $id)
             ->select('attestation_reussites.*',DB::raw('DATE(attestation_reussites.created_at) as date'));
@@ -95,10 +100,13 @@ class CustomAdminController extends Controller
             $attestation->annee2 = $attestation->annee + 1;
         }
 
-
+        if ($demande && $demande->status === 'Non traitée') {
+            Demande::where('id', $id)->update(['status' => 'En cours']);
+            
+        }
 
         return Inertia::render('Admin/details_demande_attestation_reussite',
-        ['demandes'=>$demande,
+        ['demandes'=>[$demande],
         'id'=>$id,
         'attestation_reussittes'=> $attestation_reussittes]);
     }
@@ -107,7 +115,7 @@ class CustomAdminController extends Controller
         $query1 = Demande::join('students', 'demandes.student_id', '=', 'students.id')
             ->where('demandes.id', $id)
             ->select('demandes.*',  'students.*');
-        $demande = $query1->get();
+        $demande = $query1->first();
         $query2 = Demande::join('attestation_scolarites', 'demandes.id', '=', 'attestation_scolarites.demande_id')
             ->where('demandes.id', $id)
             ->select('attestation_scolarites.*',DB::raw('DATE(attestation_scolarites.created_at) as date'));
@@ -117,8 +125,13 @@ class CustomAdminController extends Controller
             $attestation->annee2 = $attestation->annee + 1;
         }
 
+        if ($demande && $demande->status === 'Non traitée') {
+            Demande::where('id', $id)->update(['status' => 'En cours']);
+            
+        }
+
         return Inertia::render('Admin/details_demande_attestation_scolarite',
-        ['demandes'=>$demande,
+        ['demandes'=>[$demande],
         'id'=>$id,
         'attestation_scolarites'=> $attestation_scolarites]);
     }
@@ -127,7 +140,7 @@ class CustomAdminController extends Controller
         $query1 = Demande::join('students', 'demandes.student_id', '=', 'students.id')
             ->where('demandes.id', $id)
             ->select('demandes.*',  'students.*');
-        $demande = $query1->get();
+        $demande = $query1->first();
         $query2 = Demande::join('releve_notes', 'demandes.id', '=', 'releve_notes.demande_id')
             ->where('demandes.id', $id)
             ->select('releve_notes.*',DB::raw('DATE(releve_notes.created_at) as date'));
@@ -137,8 +150,13 @@ class CustomAdminController extends Controller
             $releve->annee2 = $releve->annee + 1;
         }
 
+        if ($demande && $demande->status === 'Non traitée') {
+            Demande::where('id', $id)->update(['status' => 'En cours']);
+            
+        }
+
         return Inertia::render('Admin/details_demande_releve_notes',
-        ['demandes'=>$demande,
+        ['demandes'=>[$demande],
         'id'=>$id,
         'releve_notes'=> $releve_notes]);
     }

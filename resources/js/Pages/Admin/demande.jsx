@@ -40,29 +40,29 @@ const MyLink = ({ demande }) => {
                           <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Statut</p>
                           {
                           demande.status === 'Traitée' && ( 
-                            <div class="mt-1 flex items-center gap-x-1.5">
-                            <div class="flex-none rounded-full bg-green-500/20 p-1">
-                              <div class="size-1.5 rounded-full bg-green-500" />
+                            <div className="mt-1 flex items-center gap-x-1.5">
+                            <div className="flex-none rounded-full bg-green-500/20 p-1">
+                              <div className="size-1.5 rounded-full bg-green-500" />
                             </div>
-                            <p class="text-sm/5 truncate text-gray-500">Traitée</p>
+                            <p className="text-sm/5 truncate text-gray-500">Traitée</p>
                             </div>
                           )}
                                                     {
                           demande.status === 'Non traitée' && ( 
-                            <div class="mt-1 flex items-center gap-x-1.5">
-                            <div class="flex-none rounded-full bg-red-500/20 p-1">
-                              <div class="size-1.5 rounded-full bg-red-500" />
+                            <div className="mt-1 flex items-center gap-x-1.5">
+                            <div className="flex-none rounded-full bg-red-500/20 p-1">
+                              <div className="size-1.5 rounded-full bg-red-500" />
                             </div>
-                            <p class="text-sm/5 truncate text-gray-500">Non traitée</p>
+                            <p className="text-sm/5 truncate text-gray-500">Non traitée</p>
                             </div>
                           )}
                                                     {
                           demande.status === 'En cours' && ( 
-                            <div class="mt-1 flex items-center gap-x-1.5">
-                            <div class="flex-none rounded-full bg-blue-500/20 p-1">
-                              <div class="size-1.5 rounded-full bg-blue-500" />
+                            <div className="mt-1 flex items-center gap-x-1.5">
+                            <div className="flex-none rounded-full bg-blue-500/20 p-1">
+                              <div className="size-1.5 rounded-full bg-blue-500" />
                             </div>
-                            <p class="text-sm/5 truncate text-gray-500">En cours</p>
+                            <p className="text-sm/5 truncate text-gray-500">En cours</p>
                             </div>
                           )}
                         </div>
@@ -109,29 +109,29 @@ const MyLink = ({ demande }) => {
           <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Status</p>
           {
           demande.status === 'Traitée' && ( 
-            <div class="mt-1 flex items-center gap-x-1.5">
-            <div class="flex-none rounded-full bg-green-500/20 p-1">
-              <div class="size-1.5 rounded-full bg-green-500" />
+            <div className="mt-1 flex items-center gap-x-1.5">
+            <div className="flex-none rounded-full bg-green-500/20 p-1">
+              <div className="size-1.5 rounded-full bg-green-500" />
             </div>
-            <p class="text-sm/5 truncate text-gray-500">Traitée</p>
+            <p className="text-sm/5 truncate text-gray-500">Traitée</p>
             </div>
           )}
                                     {
           demande.status === 'Non traitée' && ( 
-            <div class="mt-1 flex items-center gap-x-1.5">
-            <div class="flex-none rounded-full bg-red-500/20 p-1">
-              <div class="size-1.5 rounded-full bg-red-500" />
+            <div className="mt-1 flex items-center gap-x-1.5">
+            <div className="flex-none rounded-full bg-red-500/20 p-1">
+              <div className="size-1.5 rounded-full bg-red-500" />
             </div>
-            <p class="text-sm/5 truncate text-gray-500">Non traitée</p>
+            <p className="text-sm/5 truncate text-gray-500">Non traitée</p>
             </div>
           )}
                                     {
           demande.status === 'En cours' && ( 
-            <div class="mt-1 flex items-center gap-x-1.5">
-            <div class="flex-none rounded-full bg-blue-500/20 p-1">
-              <div class="size-1.5 rounded-full bg-blue-500" />
+            <div className="mt-1 flex items-center gap-x-1.5">
+            <div className="flex-none rounded-full bg-blue-500/20 p-1">
+              <div className="size-1.5 rounded-full bg-blue-500" />
             </div>
-            <p class="text-sm/5 truncate text-gray-500">En cours</p>
+            <p className="text-sm/5 truncate text-gray-500">En cours</p>
             </div>
           )}
         </div>
@@ -178,29 +178,29 @@ const MyLink = ({ demande }) => {
           <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Status</p>
           {
           demande.status === 'Traitée' && ( 
-            <div class="mt-1 flex items-center gap-x-1.5">
-            <div class="flex-none rounded-full bg-green-500/20 p-1">
-              <div class="size-1.5 rounded-full bg-green-500" />
+            <div className="mt-1 flex items-center gap-x-1.5">
+            <div className="flex-none rounded-full bg-green-500/20 p-1">
+              <div className="size-1.5 rounded-full bg-green-500" />
             </div>
-            <p class="text-sm/5 truncate text-gray-500">Traitée</p>
+            <p className="text-sm/5 truncate text-gray-500">Traitée</p>
             </div>
           )}
                                     {
           demande.status === 'Non traitée' && ( 
-            <div class="mt-1 flex items-center gap-x-1.5">
-            <div class="flex-none rounded-full bg-red-500/20 p-1">
-              <div class="size-1.5 rounded-full bg-red-500" />
+            <div className="mt-1 flex items-center gap-x-1.5">
+            <div className="flex-none rounded-full bg-red-500/20 p-1">
+              <div className="size-1.5 rounded-full bg-red-500" />
             </div>
-            <p class="text-sm/5 truncate text-gray-500">Non traitée</p>
+            <p className="text-sm/5 truncate text-gray-500">Non traitée</p>
             </div>
           )}
                                     {
           demande.status === 'En cours' && ( 
-            <div class="mt-1 flex items-center gap-x-1.5">
-            <div class="flex-none rounded-full bg-blue-500/20 p-1">
-              <div class="size-1.5 rounded-full bg-blue-500" />
+            <div className="mt-1 flex items-center gap-x-1.5">
+            <div className="flex-none rounded-full bg-blue-500/20 p-1">
+              <div className="size-1.5 rounded-full bg-blue-500" />
             </div>
-            <p class="text-sm/5 truncate text-gray-500">En cours</p>
+            <p className="text-sm/5 truncate text-gray-500">En cours</p>
             </div>
           )}
         </div>
@@ -248,29 +248,29 @@ const MyLink = ({ demande }) => {
           <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Status</p>
           {
           demande.status === 'Traitée' && ( 
-            <div class="mt-1 flex items-center gap-x-1.5">
-            <div class="flex-none rounded-full bg-green-500/20 p-1">
-              <div class="size-1.5 rounded-full bg-green-500" />
+            <div className="mt-1 flex items-center gap-x-1.5">
+            <div className="flex-none rounded-full bg-green-500/20 p-1">
+              <div className="size-1.5 rounded-full bg-green-500" />
             </div>
-            <p class="text-sm/5 truncate text-gray-500">Traitée</p>
+            <p className="text-sm/5 truncate text-gray-500">Traitée</p>
             </div>
           )}
                                     {
           demande.status === 'Non traitée' && ( 
-            <div class="mt-1 flex items-center gap-x-1.5">
-            <div class="flex-none rounded-full bg-red-500/20 p-1">
-              <div class="size-1.5 rounded-full bg-red-500" />
+            <div className="mt-1 flex items-center gap-x-1.5">
+            <div className="flex-none rounded-full bg-red-500/20 p-1">
+              <div className="size-1.5 rounded-full bg-red-500" />
             </div>
-            <p class="text-sm/5 truncate text-gray-500">Non traitée</p>
+            <p className="text-sm/5 truncate text-gray-500">Non traitée</p>
             </div>
           )}
                                     {
           demande.status === 'En cours' && ( 
-            <div class="mt-1 flex items-center gap-x-1.5">
-            <div class="flex-none rounded-full bg-blue-500/20 p-1">
-              <div class="size-1.5 rounded-full bg-blue-500" />
+            <div className="mt-1 flex items-center gap-x-1.5">
+            <div className="flex-none rounded-full bg-blue-500/20 p-1">
+              <div className="size-1.5 rounded-full bg-blue-500" />
             </div>
-            <p class="text-sm/5 truncate text-gray-500">En cours</p>
+            <p className="text-sm/5 truncate text-gray-500">En cours</p>
             </div>
           )}
         </div>
@@ -300,7 +300,7 @@ const MyLink = ({ demande }) => {
                   <form method="get" action={route('traitement_demande')} id="filterForm" className="my-10 flex justify-between gap-x-8">
                     <div className="flex-wrap-2 max-w-sm">
 
-                              <label htmlFor="country" className="block text-sm/6 font-medium text-gray-900">
+                              <label className="block text-sm/6 font-medium text-gray-900">
                               Type de Demande
                               </label>
                               <div className="mt-2 grid grid-cols-1">
@@ -320,7 +320,7 @@ const MyLink = ({ demande }) => {
                               </div>
                     </div>                   
                     <div className="flex-2 max-w-sm">
-                              <label htmlFor="country" className="block text-sm/6 font-medium text-gray-900">
+                              <label className="block text-sm/6 font-medium text-gray-900">
                               Trier par
                               </label>
                               <div className="mt-2 grid grid-cols-1">

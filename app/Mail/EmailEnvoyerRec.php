@@ -33,8 +33,7 @@ class EmailEnvoyerRec extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('mohamedsadki2003@gmail.com'),
-            subject: $this->data['subject'],
+            subject: $this->data['sujet'],
         );
     }
 
@@ -53,10 +52,10 @@ class EmailEnvoyerRec extends Mailable
 
     public function build()
     {
-        return $this->view('mail.test')
+        return $this->view('mail.resoudreRec')
                     ->subject('Reclamation en cours de traitement')
                     ->with([
-                        'subject' => $this->data['subject'],
+                        'reponse' => $this->data['reponse'],
                     ]);
     }
 

@@ -1,6 +1,8 @@
 import HeaderAdmin from '@/Components/HeaderAdmin';
 import Header from '../../Components/header';
 import { Head, Link, useForm } from "@inertiajs/react";
+import { useEffect } from 'react';
+
 
 
 const probleme_technique= ({reclamations,id}) => {
@@ -8,7 +10,17 @@ const probleme_technique= ({reclamations,id}) => {
       
       sujet: '',
       reponse: '',
+      reclamation_id: id,
     })
+
+
+    useEffect(() => {
+      if (reclamations.length > 0) {
+          setData('sujet', `Réponse à : ${reclamations[0].sujet}`);
+      }
+  }, [reclamations]);
+
+
   const onSubmit = (e) => {
 
     e.preventDefault();
@@ -35,7 +47,7 @@ const probleme_technique= ({reclamations,id}) => {
 
           {reclamations.map((reclamation) => (
 
-          <div className="mt-6 border-t border-gray-100">
+          <div key={reclamation.id}  className="mt-6 border-t border-gray-100">
               <dl className="divide-y divide-gray-100">
 
                   <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
@@ -69,7 +81,7 @@ const probleme_technique= ({reclamations,id}) => {
          
           <div className="mt-6 border-t border-gray-100">
               {reclamations.map((reclamation) => (
-              <dl className="divide-y divide-gray-100">
+              <dl key={reclamation.id}  className="divide-y divide-gray-100">
 
               <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                   <dd className="text-sm/6 font-medium text-gray-900">Type de réclamation</dd>
@@ -93,6 +105,9 @@ const probleme_technique= ({reclamations,id}) => {
               <div className="px-4 sm:px-0 mt-20">
                 <h3 className="text-base/7 font-semibold text-gray-900 underline underline-offset-4 decoration-gray-100">Gérer la Réclamation </h3>
               </div>
+
+              {reclamations.some((reclamation) => reclamation.status !== 'Traitée') ? (
+
             <form onSubmit={onSubmit} >
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div className="sm:col-span-5">
@@ -108,7 +123,7 @@ const probleme_technique= ({reclamations,id}) => {
                                   autoComplete="sujet"
                                   onChange={(e) => setData('sujet', e.target.value)}
                                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-700 sm:text-sm/6"
-                                  />
+                            />
                         </div>
                   </div>
 
@@ -125,7 +140,7 @@ const probleme_technique= ({reclamations,id}) => {
                                   onChange={(e) => setData('reponse', e.target.value)}
 
                                   className="block w-full min-h-32 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-700 sm:text-sm/6"
-                                  defaultValue={''}
+                                  
                                   />
                         </div>
                           <p className="mt-3 text-sm/6 text-gray-600">Un email contenant la réponse à la réclamation sera adressé à l'étudiant.</p>
@@ -138,6 +153,12 @@ const probleme_technique= ({reclamations,id}) => {
 
               </div>
             </form>
+
+            ) : (
+              <p className="text-sm/6 font-medium text-gray-900 sm:gap-4 sm:px-0 px-4 py-6">
+                Cette réclamation est déjà traitée.
+              </p>
+            )}
 
           </div>
       </div>

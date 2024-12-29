@@ -18,7 +18,7 @@ import HeaderAdmin from '@/Components/HeaderAdmin';
                 <form methode="get" action={route('reclamationadmin')} id="reclamationfilterForm" className="my-10 flex justify-between gap-x-8">
                     <div className="flex-wrap-2 max-w-sm">
 
-                              <label htmlFor="country" className="block text-sm/6 font-medium text-gray-900">
+                              <label  className="block text-sm/6 font-medium text-gray-900">
                               Type de Réclamation
                               </label>
                               <div className="mt-2 grid grid-cols-1">
@@ -41,7 +41,7 @@ import HeaderAdmin from '@/Components/HeaderAdmin';
 
                     <div className="flex-2 max-w-sm">
 
-                              <label htmlFor="country" className="block text-sm/6 font-medium text-gray-900">
+                              <label  className="block text-sm/6 font-medium text-gray-900">
                               Trier par
                               </label>
                               <div className="mt-2 grid grid-cols-1">
