@@ -31,7 +31,7 @@ class CustomAdminController extends Controller
     public function show(Request $request)
     {
     $query = Demande::join('students', 'demandes.student_id', '=', 'students.id')
-        ->select('demandes.*', DB::raw('DATE(demandes.created_at) as date'), 'students.name as name', 'students.cne as cne');
+        ->select('demandes.*', DB::raw('DATE(demandes.created_at) as date'), 'students.name as name', 'students.N_Apogee as N_Apogee');
 
     if ($request->has('type_demande') && $request->type_demande != "Tous les demandes") {
         $query->where('type_demande', $request->type_demande);
@@ -48,17 +48,19 @@ class CustomAdminController extends Controller
         $trier_par=$request->trier_par;
     }   
     else{
-        $query->orderBy('date', 'desc');
+        $query->orderBy('created_at', 'desc');
         $trier_par="Les plus récentes";
     }
         
-    $demande = $query->get();
+    $demande = $query->paginate(10)->withQueryString();
    
         return Inertia::render('Admin/demande',[
     'demandes'=>$demande,
     'type_demande'=> $type_demande,
     'trier_par'=>$trier_par]);
     }
+
+
     public function show_convention($id)
     {
         $query1 = Demande::join('students', 'demandes.student_id', '=', 'students.id')
@@ -89,6 +91,10 @@ class CustomAdminController extends Controller
             ->select('attestation_reussites.*',DB::raw('DATE(attestation_reussites.created_at) as date'));
         $attestation_reussittes = $query2->get();
 
+        foreach ($attestation_reussittes as $attestation) {
+            $attestation->annee2 = $attestation->annee + 1;
+        }
+
 
 
         return Inertia::render('Admin/details_demande_attestation_reussite',
@@ -106,6 +112,11 @@ class CustomAdminController extends Controller
             ->where('demandes.id', $id)
             ->select('attestation_scolarites.*',DB::raw('DATE(attestation_scolarites.created_at) as date'));
         $attestation_scolarites = $query2->get();
+
+        foreach ($attestation_scolarites as $attestation) {
+            $attestation->annee2 = $attestation->annee + 1;
+        }
+
         return Inertia::render('Admin/details_demande_attestation_scolarite',
         ['demandes'=>$demande,
         'id'=>$id,
@@ -121,6 +132,11 @@ class CustomAdminController extends Controller
             ->where('demandes.id', $id)
             ->select('releve_notes.*',DB::raw('DATE(releve_notes.created_at) as date'));
         $releve_notes = $query2->get();
+
+        foreach ($releve_notes as $releve) {
+            $releve->annee2 = $releve->annee + 1;
+        }
+
         return Inertia::render('Admin/details_demande_releve_notes',
         ['demandes'=>$demande,
         'id'=>$id,
@@ -229,7 +245,7 @@ class CustomAdminController extends Controller
         $result = $query->first();
 
         $query = Note::where('student_id', $result->name)
-            ->where('annee', $result->annee1);
+            ->where('annee', $result->annee);
         $notes= $query->get();
         $average = $query->avg('note');
         $mpdf = new Mpdf();

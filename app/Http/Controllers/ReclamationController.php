@@ -26,6 +26,7 @@ class ReclamationController extends Controller
             'reclamations.*',
             'students.N_Apogee',
             'students.name',
+            DB::raw("DATE(reclamations.created_at) as date"),
         );
 
         if ($request->has('type_reclamation') && $request->type_reclamation != "Tous les réclamation") {
@@ -46,7 +47,7 @@ class ReclamationController extends Controller
             $query->orderBy('created_at', 'desc');
             $trier_par="Les plus récentes";
         }
-        $reclamation = $query->get();
+        $reclamation = $query->paginate(10)->withQueryString();
 
    
     return Inertia::render('Admin/reclamation', ['reclamations' => $reclamation , 
@@ -81,7 +82,7 @@ public function attestationreuissitePDF($id){
     $result = $query->first();
 
     $query = Note::where('student_id', $result->name)
-        ->where('annee', $result->annee1);
+        ->where('annee', $result->annee);
     $average = $query->avg('note');
 
 
@@ -110,6 +111,9 @@ public function attestationreuissitePDF($id){
         Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyer($data));
         return 'Email sent successfully';
 }
+
+
+
 public function resoudrereclamation ( Request $request ){
     $data = $request->validate([
         'sujet' => 'required|string',
@@ -124,7 +128,7 @@ public function resoudrereclamation ( Request $request ){
                   "Avenue de la Palestine Mhanech I, TÉTOUAN"
     ];
 
-    Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyerRec($data));
+    Mail::to('elhauari.imohamed@etu.uae.ac.ma')->send(new EmailEnvoyerRec($data));
     return 'Email sent successfully';
 
     return redirect('/reclamations');

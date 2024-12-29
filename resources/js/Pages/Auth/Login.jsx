@@ -1,4 +1,5 @@
 import Checkbox from '@/Components/Checkbox';
+import Header from '@/Components/Header';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -23,6 +24,7 @@ export default function Login({ status, canResetPassword }) {
     };
     return (
         <div className="bg-white h-full">
+        <Head title='Login' />
         <div className="relative isolate px-6 pt-10 lg:px-8">
           
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-20 lg:px-8">
@@ -32,7 +34,7 @@ export default function Login({ status, canResetPassword }) {
                     src="/images/logo.png"
                     className="h-10 w-auto"
                     />
-                    <h3 className="text-pretty text-lg font-medium text-gray-800 font-semibold sm:text-lg/8">e-ENSATé</h3>
+                    <h3 className="text-pretty text-lg text-gray-800 font-semibold sm:text-lg/8">e-ENSATé</h3>
                 </div>
                 <h2 className="mt-8 text-center text-xl/9 font-bold tracking-tight text-gray-800">
                     Bienvenue dans l'Espace Administrateur

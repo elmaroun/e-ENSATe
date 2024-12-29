@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Demande;
 use App\Models\Student;
+use App\Mail\DemandeFailed;
 use App\Models\Reclamation;
 use App\Models\Releve_note;
-use App\Models\Attestation_scolarite;
-use App\Models\Convention_stage;
-use App\Models\Attestation_reussite;
+use App\Mail\DemandeSuccess;
+use App\Mail\ReclamationFailed;
 use Illuminate\Validation\Rule;
+use App\Mail\ReclamationSuccess;
+use App\Models\Convention_stage;
 use Illuminate\Support\Facades\Log;
+use App\Models\Attestation_reussite;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Attestation_scolarite;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -39,12 +44,16 @@ class EtudiantController extends Controller
 
 
         if (!$student) {
-        return to_route('done')->with('noEtudiant', 'Aucun Etudiant');
+            Mail::to($data['email'])->send(new ReclamationFailed());
+            return to_route('done')->with('noEtudiant', 'Aucun Etudiant');
         }
 
         $data['student_id'] = $student->id;
 
         Reclamation::create($data);
+
+        $reclamation = Reclamation::latest()->first();
+        Mail::to($data['email'])->send(new ReclamationSuccess($reclamation));
 
         return to_route('done')->with('message', 'Réussi');
             
@@ -68,12 +77,16 @@ class EtudiantController extends Controller
             ->first();
 
         if (!$student) {
+            Mail::to($data['email'])->send(new DemandeFailed());
             return to_route('done')->with('noEtudiant', 'Aucun Etudiant');
         }
 
         $data['student_id'] = $student->id;
 
         $demande = Demande::create($data);
+
+        $demande = Demande::latest()->first();
+        Mail::to($data['email'])->send(new DemandeSuccess($demande));
 
         if ($data['type_demande'] === 'Attestation de Scolarité') {
 
@@ -84,6 +97,7 @@ class EtudiantController extends Controller
                 'demande_id' => $demande->id,
                 'annee' => $year,
             ]);
+            
             return to_route('done')->with('message1', 'Réussi');
         }
 

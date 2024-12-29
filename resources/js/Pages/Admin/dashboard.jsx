@@ -24,10 +24,6 @@ export default function Dashboard({
     {
 
   
-
-
-
-  
   return (
   
 
@@ -117,7 +113,7 @@ export default function Dashboard({
               {/* Row 3 */}
               <div className="flex flex-col gap-y-4 border border-gray-300 border-opacity-50 rounded-lg p-4 w-full h-full bg-gray-100 bg-opacity-50 cursor-default">
                   <dt className="text-base/7 truncate text-gray-600">Nombre Total des Réclamations</dt>
-                  <dd className="order-first text-2xl font-semibold tracking-tight text-gray-900 sm:text-4xl">15</dd>
+                  <dd className="order-first text-2xl font-semibold tracking-tight text-gray-900 sm:text-4xl">{totalReclamations}</dd>
               </div>
               <div className="flex flex-col gap-y-4 border border-gray-300 border-opacity-50 rounded-lg p-4 w-full h-full bg-blue-100 bg-opacity-50 cursor-default">
                   <dt className="text-base/7 truncate text-gray-600">Réclamations Traitées</dt>

@@ -301,8 +301,113 @@ export default function ConventionStage({ demande_id }) {
                     className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   >
                     <option hidden>Encadrant</option>
-                    <option>Ilias Maroun</option>
-                    <option>Rajae El-abida</option>
+                    <option>CHKOURI Mohamed Yassin - INFO</option>
+                    <option>LARIOUI Sanae - ADMIN</option>
+                    <option>CHOUIEKH Mohamed - ADMIN</option>
+                    <option>REKLAOUI KAMAL - ADMIN</option>
+                    <option>EL OUALKADI AHMED - ADMIN</option>
+                    <option>EL YAMOUNI Bouraida - ADMIN</option>
+                    <option>MAHFOUDI Mohammed - EST</option>
+                    <option>EL HAMMOUMI Aboubakr - EST</option>
+                    <option>MARZOUKI Faouzi - EST</option>
+                    <option>BELMIR IBRAHIM - HUMANITES</option>
+                    <option>ISLAMI Chakib - HUMANITES</option>
+                    <option>LAIMOUNA Bahija - HUMANITES</option>
+                    <option>MALLA HUSSEIN Sawsan - HUMANITES</option>
+                    <option>NEJJARI Amel - HUMANITES</option>
+                    <option>RGUIG Sara - HUMANITES</option>
+                    <option>AZAIMI Karima - HUMANITES</option>
+                    <option>AGHZOUT Otman - IAD</option>
+                    <option>AYTOUNA Fouad - IAD</option>
+                    <option>BENTAJER AHMED - IAD</option>
+                    <option>KHOULJI Samira - IAD</option>
+                    <option>ZBITOU Jamal - IAD</option>
+                    <option>BELCAID Anass - IAD</option>
+                    <option>ABTOY Anouar - INFO</option>
+                    <option>AL ACHHAB Mohammed - INFO</option>
+                    <option>BESRI Zineb - INFO</option>
+                    <option>CHRAYAH Mohamed - INFO</option>
+                    <option>EL BOUHDIDI Jaber - INFO</option>
+                    <option>EL HAJJAMY OUSSAMA - INFO</option>
+                    <option>EL KHAMLICHI  Yasser - INFO</option>
+                    <option>EL YOUNOUSSI Yacine - INFO</option>
+                    <option>JOURANI Reda - INFO</option>
+                    <option>MANSOUR Abdeljebbar - INFO</option>
+                    <option>MESMOUDI Yasser - INFO</option>
+                    <option>TAHIRI Abderrahim - INFO</option>
+                    <option>HACHCHANE Imane - INFO</option>
+                    <option>EL BAKARI ABDELALI - ITSI</option>
+                    <option>EL MOURABIT Youness - ITSI</option>
+                    <option>HADDI Ali - ITSI</option>
+                    <option>HAJAJI Anas - ITSI</option>
+                    <option>MAHBOUB Oussama - ITSI</option>
+                    <option>MEDOURI Abdellatif - ITSI</option>
+                    <option>NASRI Khalid - ITSI</option>
+                    <option>SANBI Mustapha - ITSI</option>
+                    <option>MOUTAKKI Zakaria - ITSI</option>
+                    <option>AZEROUAL Boubker - SMAD</option>
+                    <option>BOUKOUR Mustapha - SMAD</option>
+                    <option>CHERKAOUI Mohamed - SMAD</option>
+                    <option>DKHISSI Btissam - SMAD</option>
+                    <option>ECH-CHARRAT Mohammed Rida - SMAD</option>
+                    <option>EL BIARI Aouatef - SMAD</option>
+                    <option>EL FALLAHI Abdellah - SMAD</option>
+                    <option>LAJJAM Azza - SMAD</option>
+                    <option>LOUARTITI Khalid - SMAD</option>
+                    <option>LOULY Adel - SMAD</option>
+                    <option>SARIR Hicham - SMAD</option>
+                    <option>ZLAIJI Loubna - SMAD</option>
+                    <option>OKAR CHAFIK - SMAD</option>
+                    <option>FILALI Youness - SMAD</option>
+                    <option>EL HAKOUME Abdelmajid - SMAD</option>
+                    <option>EL MOIZE Othmane - SMAD</option>
+                    <option>AIT LHASSAN  Imad - SMAD</option>
+                    <option>ACHEGAF Zineb - STIC</option>
+                    <option>ATTAJKANI Sabri - STIC</option>
+                    <option>BANNOUR Abdelilah - STIC</option>
+                    <option>BOUNAB Loubna - STIC</option>
+                    <option>EL KHANNOUSSI Fadoua - STIC</option>
+                    <option>JOUILEL Naima - STIC</option>
+                    <option>KHAMLICHI Abdellatif - STIC</option>
+                    <option>O.BENZAROUALA Rachad - STIC</option>
+                    <option>ZAKRITI Alia - STIC</option>
+                    <option>AL MERS Ahmed - STIC</option>
+                    <option>TAHIRI Mohammed - STIC</option>
+                    <option>BOLAJRAF Mohamed - TELECOM</option>
+                    <option>CHAKKOR Otman - TELECOM</option>
+                    <option>CHARIF Mohamed - TELECOM</option>
+                    <option>El ADIB Samir - TELECOM</option>
+                    <option>RAISSOUNI Naoufal - TELECOM</option>
+                    <option>KASSOU MANAR - VAC</option>
+                    <option>AL-AMRANI YASSINE - VAC</option>
+                    <option>JEBARI HAKIM - VAC</option>
+                    <option>ELBAGHDADI ABDELAZIZ - VAC</option>
+                    <option>CHIKRI HASSAN - VAC</option>
+                    <option>LAZAAR SAIIDA - VAC</option>
+                    <option>BENKADDOUR Abdelhamid - VAC</option>
+                    <option>BROUILLETTE KATHRYN - VAC</option>
+                    <option>MAOUENE Mounir - VAC</option>
+                    <option>OUAIL Mohammed - VAC</option>
+                    <option>BEN AISSA Nouha - VAC</option>
+                    <option>LAGZIRI Hajar - VAC</option>
+                    <option>EL HADRI Doae - VAC</option>
+                    <option>AMTHIOU HANAN - VAC</option>
+                    <option>ACHABBAK AHDIA - VAC</option>
+                    <option>BACHAOU MUSTAPHA - VAC</option>
+                    <option>RAISS INSSAF - VAC</option>
+                    <option>BENKHALOU HAYAT - VAC</option>
+                    <option>EL FTOUH HANAE - VAC</option>
+                    <option>KHALFI Mustapha - VAC</option>
+                    <option>OUTAIR Anas - VAC</option>
+                    <option>ZITAN Houda - VAC</option>
+                    <option>BOUROUHOU Abdelhamid - VAC</option>
+                    <option>BELAMIN Butaina - VAC</option>
+                    <option>BERRADI Halim - VAC</option>
+                    <option>Yahyaoui Mohammed - VAC</option>
+                    <option>ABDESSADAK Jihane - VAC</option>
+                    <option>ELIAZIDI Sara - VAC</option>
+                    <option>ABOUZID HOUDA - VAC</option>
+                    <option>LEQDEH MHAMED - VAC</option>
                 </select>
                 </div>
               </div>

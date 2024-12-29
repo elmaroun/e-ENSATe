@@ -60,13 +60,13 @@ const detailsdemandesattestationscolarite =({demandes,releve_notes}) => {
 
               <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                   <dd className="text-sm/6 font-medium text-gray-900">Type de demande</dd>
-                  <dd className="mt-1 text-sm/6 text-gray-700  sm:mt-0">Relevé des Notes</dd>
+                  <dd className="mt-1 text-sm/6 text-gray-700  sm:mt-0">Relevé des notes</dd>
                   <dd className="text-sm/6 font-medium text-gray-900">Date de demande</dd>
                   <dd className="mt-1 text-sm/6 text-gray-700  sm:mt-0">{releve_note.date}</dd>
                 </div>  
                 <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
-                  <dt className="text-sm/6 font-medium text-gray-900">année de l'attestation</dt>
-                  <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-3 sm:mt-0">{releve_note.annee}</dd>
+                  <dt className="text-sm/6 font-medium text-gray-900">Année de l'attestation</dt>
+                  <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-3 sm:mt-0">{releve_note.annee} / {releve_note.annee2}</dd>
                 </div>
                 <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                   <dt className="text-sm/6 font-medium text-gray-900">Semestre</dt>

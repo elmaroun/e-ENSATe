@@ -70,92 +70,101 @@ import HeaderAdmin from '@/Components/HeaderAdmin';
                     </div>
                 </form>
 
-                <ul role="list" className="divide-y divide-gray-100">
-
-
-                  {reclamations.map((reclamation) => (
-
-
-  
-
-
-                <Link href={route('probleme_technique', { id: reclamation.id })}>
-                    <li className="grid grid-cols-6 gap-x-10 p-5 items-center justify-center hover:bg-gray-100">
-
-
-                      <div className="col-span-2 min-w-0 gap-x-4">
-                        
+                <div>
+    <ul role="list" className="divide-y divide-gray-100">
+        {reclamations.data.map((reclamation) => (
+            <Link href={route('probleme_technique', { id: reclamation.id })} key={reclamation.id}>
+                <li className="grid grid-cols-6 gap-x-10 p-5 items-center justify-center hover:bg-gray-100">
+                    <div className="col-span-2 min-w-0 gap-x-4">
                         <div className="min-w-0 flex-auto">
-                          <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Type de Réclamation</p>
-                          <p className="mt-1 truncate text-sm/5 text-gray-500">{reclamation.type}</p>
+                            <p className="text-base/6 font-semibold text-gray-900 text-nowrap">
+                                Type de Réclamation
+                            </p>
+                            <p className="mt-1 truncate text-sm/5 text-gray-500">{reclamation.type}</p>
                         </div>
-
-                      </div>
-
-                      <div className="col-span-2 min-w-0 gap-x-4">
-                        
-                        <div className="min-w-0 flex-auto">
-                          <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Nº Apogée - Etudiant</p>
-                          <p className="mt-1 truncate text-sm/5 text-gray-500"> {reclamation.N_Apogee} - {reclamation.name}</p>
-                        </div>
-
-                      </div>
-
-                      <div className="col-span-1 min-w-0 gap-x-4">
-                        
-                        <div className="min-w-0 flex-auto">
-                          <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Date</p>
-                          <p className="mt-1 truncate text-sm/5 text-gray-500">{reclamation.created_at}</p>
-                        </div>
-
-                      </div>
-
-                      <div className="col-span-1 min-w-0 gap-x-4">
-                    
-                        <div className="min-w-0 flex-auto">
-                          <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Status</p>
-                          {
-                        reclamation.status === 'Traitée' && (
-                          <div className="mt-1 flex items-center gap-x-1.5">
-                              <div className="flex-none rounded-full bg-green-500/20 p-1">
-                              <div className="size-1.5 rounded-full bg-green-500" />
-                              </div>
-                              <p className="text-sm/5 truncate text-gray-500">{reclamation.status}</p>
-                          </div>
-                       )
-                        }
-                     
-                       
-                        
-                          {reclamation.status === 'Non traitée' && (
-                              <div className="mt-1 flex items-center gap-x-1.5">
-                                 <div className="flex-none rounded-full bg-red-500/20 p-1">
-                              <div className="size-1.5 rounded-full bg-red-500" />
-                              </div>
-                              <p className="text-sm/5 truncate text-gray-500">{reclamation.status}</p>
-                          </div>
-                        )
-                          }
-                      
-                            {reclamation.status === 'En cours' && (
-                              <div className="mt-1 flex items-center gap-x-1.5">
-                                  <div className="flex-none rounded-full bg-blue-500/20 p-1">
-                                  <div className="size-1.5 rounded-full bg-blue-500" />
-                                  </div>
-                                  <p className="text-sm/5 truncate text-gray-500">{reclamation.status}</p>
-                              </div>
-                            )
-                            }
-                        
-                       </div>  
                     </div>
-                    </li>
-                    <hr></hr>
+
+                    <div className="col-span-2 min-w-0 gap-x-4">
+                        <div className="min-w-0 flex-auto">
+                            <p className="text-base/6 font-semibold text-gray-900 text-nowrap">
+                                Nº Apogée - Étudiant
+                            </p>
+                            <p className="mt-1 truncate text-sm/5 text-gray-500">
+                                {reclamation.N_Apogee} - {reclamation.name}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="col-span-1 min-w-0 gap-x-4">
+                        <div className="min-w-0 flex-auto">
+                            <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Date</p>
+                            <p className="mt-1 truncate text-sm/5 text-gray-500">
+                                {reclamation.date}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="col-span-1 min-w-0 gap-x-4">
+                        <div className="min-w-0 flex-auto">
+                            <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Statut</p>
+                            {reclamation.status === 'Traitée' && (
+                                <div className="mt-1 flex items-center gap-x-1.5">
+                                    <div className="flex-none rounded-full bg-green-500/20 p-1">
+                                        <div className="size-1.5 rounded-full bg-green-500" />
+                                    </div>
+                                    <p className="text-sm/5 truncate text-gray-500">{reclamation.status}</p>
+                                </div>
+                            )}
+                            {reclamation.status === 'Non traitée' && (
+                                <div className="mt-1 flex items-center gap-x-1.5">
+                                    <div className="flex-none rounded-full bg-red-500/20 p-1">
+                                        <div className="size-1.5 rounded-full bg-red-500" />
+                                    </div>
+                                    <p className="text-sm/5 truncate text-gray-500">{reclamation.status}</p>
+                                </div>
+                            )}
+                            {reclamation.status === 'En cours' && (
+                                <div className="mt-1 flex items-center gap-x-1.5">
+                                    <div className="flex-none rounded-full bg-blue-500/20 p-1">
+                                        <div className="size-1.5 rounded-full bg-blue-500" />
+                                    </div>
+                                    <p className="text-sm/5 truncate text-gray-500">{reclamation.status}</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </li>
+                <hr />
+            </Link>
+        ))}
+    </ul>
+
+    {/* Pagination */}
+    <div className="mt-4">
+    <nav aria-label="Pagination">
+        <ul className="flex justify-center space-x-2 mt-14">
+            {reclamations.links.map((link, index) => (
+                <li key={index}>
+                    <Link
+                        href={link.url}
+                        className={`px-4 py-2 border rounded-md ${
+                            link.active ? 'bg-gray-400 text-white' : link.url ? 'bg-white text-gray-900 hover:bg-gray-100'
+                                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        }`}
+                        onClick={(e) => {
+                            if (!link.url) e.preventDefault();
+                        }}
+                    >
+                        {link.label === '&laquo; Previous' ? '«' : link.label === 'Next &raquo;' ? '»' : link.label}
                     </Link>
-                    
-                  
-                  ))}
-                </ul>
+                </li>
+            ))}
+        </ul>
+    </nav>
+    </div>
+
+</div>
+
 
 
               </div>

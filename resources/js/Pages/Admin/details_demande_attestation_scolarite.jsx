@@ -60,13 +60,13 @@ const detailsdemandesattestationscolarite =({demandes,attestation_scolarites,id}
 
               <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
                   <dd className="text-sm/6 font-medium text-gray-900">Type de demande</dd>
-                  <dd className="mt-1 text-sm/6 text-gray-700  sm:mt-0">Attestation de scolarite</dd>
+                  <dd className="mt-1 text-sm/6 text-gray-700  sm:mt-0">Attestation de scolarité</dd>
                   <dd className="text-sm/6 font-medium text-gray-900">Date de demande</dd>
                   <dd className="mt-1 text-sm/6 text-gray-700  sm:mt-0">{attestation_scolarite.date}</dd>
                   </div>  
                   <div className="px-4 py-6 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-0">
-                  <dt className="text-sm/6 font-medium text-gray-900">année de l'attestation</dt>
-                  <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-3 sm:mt-0">{attestation_scolarite.annee1}/{attestation_scolarite.annee2}</dd>
+                  <dt className="text-sm/6 font-medium text-gray-900">Année de l'attestation</dt>
+                  <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-3 sm:mt-0">{attestation_scolarite.annee} / {attestation_scolarite.annee2}</dd>
                 </div>                
               </dl>
 

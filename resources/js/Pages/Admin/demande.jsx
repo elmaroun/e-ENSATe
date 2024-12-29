@@ -22,7 +22,7 @@ const MyLink = ({ demande }) => {
                         
                         <div className="min-w-0 flex-auto">
                           <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Nº Apogee - Etudiant</p>
-                          <p className="mt-1 truncate text-sm/5 text-gray-500">{demande.cne} - {demande.name}</p>
+                          <p className="mt-1 truncate text-sm/5 text-gray-500">{demande.N_Apogee} - {demande.name}</p>
                         </div>
 
                       </div>
@@ -37,7 +37,7 @@ const MyLink = ({ demande }) => {
                       </div>
                       <div className="col-span-1 min-w-0 gap-x-4">
                         <div className="min-w-0 flex-auto">
-                          <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Status</p>
+                          <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Statut</p>
                           {
                           demande.status === 'Traitée' && ( 
                             <div class="mt-1 flex items-center gap-x-1.5">
@@ -91,7 +91,7 @@ const MyLink = ({ demande }) => {
         
         <div className="min-w-0 flex-auto">
           <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Nº Apogee - Etudiant</p>
-          <p className="mt-1 truncate text-sm/5 text-gray-500">{demande.cne} - {demande.name}</p>
+          <p className="mt-1 truncate text-sm/5 text-gray-500">{demande.N_Apogee} - {demande.name}</p>
         </div>
 
       </div>
@@ -160,7 +160,7 @@ const MyLink = ({ demande }) => {
         
         <div className="min-w-0 flex-auto">
           <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Nº Apogee - Etudiant</p>
-          <p className="mt-1 truncate text-sm/5 text-gray-500">{demande.cne} - {demande.name}</p>
+          <p className="mt-1 truncate text-sm/5 text-gray-500">{demande.N_Apogee} - {demande.name}</p>
         </div>
 
       </div>
@@ -230,7 +230,7 @@ const MyLink = ({ demande }) => {
         
         <div className="min-w-0 flex-auto">
           <p className="text-base/6 font-semibold text-gray-900 text-nowrap">Nº Apogee - Etudiant</p>
-          <p className="mt-1 truncate text-sm/5 text-gray-500">{demande.cne} - {demande.name}</p>
+          <p className="mt-1 truncate text-sm/5 text-gray-500">{demande.N_Apogee} - {demande.name}</p>
         </div>
 
       </div>
@@ -349,14 +349,42 @@ const MyLink = ({ demande }) => {
 
                   </form>
 
-                <ul role="list" className="divide-y divide-gray-100">
+
+                  <div>
+                      <ul role="list" className="divide-y divide-gray-100">
+                          {demandes.data.map((demande) => (
+                              <MyLink key={demande.id} demande={demande} />
+                          ))}
+                      </ul>
+
+                      <div className="mt-4">
+                          <nav aria-label="Pagination">
+                              <ul className="flex justify-center space-x-2 mt-14">
+                                  {demandes.links.map((link, index) => (
+                                      <li key={index}>
+                                          <Link
+                                              href={link.url ? `${link.url}&type_demande=${type_demande}&trier_par=${trier_par}` : null}
+                                              className={`px-4 py-2 border rounded-md ${
+                                                  link.active ? 'bg-gray-400 text-white' : link.url ? 'bg-white text-gray-900 hover:bg-gray-100'
+                                                      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                                              }`}
+                                              onClick={(e) => {
+                                                  if (!link.url) e.preventDefault();
+                                              }}
+                                          >
+                                              {link.label === '&laquo; Previous' ? '«' : link.label === 'Next &raquo;' ? '»' : link.label}
+                                          </Link>
+                                      </li>
+                                  ))}
+                              </ul>
+                          </nav>
+                      </div>
+                  </div>
 
 
-                  {demandes.map((demande) => (
-                    <MyLink demande={demande} />
 
-                  ))}
-                </ul>
+                
+                
 
 
               </div>
