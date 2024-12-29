@@ -89,7 +89,7 @@ public function attestationreuissitePDF($id){
         );
     $result = $query->first();
 
-    $query = Note::where('student_id', $result->name)
+    $query = Note::where('student_id', $result->id_student)
         ->where('annee', $result->annee);
     $average = $query->avg('note');
 
@@ -103,23 +103,18 @@ public function attestationreuissitePDF($id){
      $path = storage_path('app/public/ATTESTATION_REUISSITE.pdf'); // Par exemple dans /storage/app/public
      $data = [
             'subject' => ' Votre attestation de réussite ',
-            'body' => "Cher(e) {{$result->name}},
+            'body' => "Cher(e) $result->name,
             Nous vous adressons toutes nos félicitations pour votre réussite. Votre attestation de réussite est jointe à cet email.
-                        Si vous avez des questions ou besoin d'autres documents, n'hésitez pas à nous contacter.
-                        Cordialement,  
-                        École nationale des sciences appliquées de Tétouan - service de scolarité  
-                        ensate@uae.ac.ma
-                        Avenue de la Palestine Mhanech I, TÉTOUAN ",
+                        Si vous avez des questions ou besoin d'autres documents, n'hésitez pas à nous contacter.",
             'path'=> '\app\public\ATTESTATION_REUISSITE.pdf',
         ];
         Demande::where('id', $id)->update([
             'status' => 'Traitée',
         ]); 
         $mpdf->Output($path, 'F');
-        Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyer($data));
-        return 'Email sent successfully';
-}
-
+        Mail::to($result->email)->send(new EmailEnvoyer($data));
+        return redirect('/demandes');
+    }
 
 
 public function resoudrereclamation(Request $request)

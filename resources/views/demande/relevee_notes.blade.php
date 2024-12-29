@@ -60,8 +60,7 @@ body{
     <table class="header_table">
     <tr>
         <td class="title" style="width: 20%; font-size:15px; ">Université Abdelmalek Essaâdi Ecole Nationale des Sciences Appliquées Tétouan</td>
-        <td style="width: 2cm; background-color:green;"></td>
-        <td style="width: 30%; background-color:white;"></td>
+
              
         </tr>
 
@@ -124,8 +123,8 @@ body{
                 </tr>
                 @foreach($notes as $note)
                 <tr>
-                    <td style="border: 1px solid #ddd;padding: 8px;text-align: left;">{{$notes->module}}</td>
-                    <td style="border: 1px solid #ddd;padding: 8px;text-align: left;">{{$notes-> note}}</td>
+                    <td style="border: 1px solid #ddd;padding: 8px;text-align: left;">{{$note->Module}}</td>
+                    <td style="border: 1px solid #ddd;padding: 8px;text-align: left;">{{$note->note}}</td>
                 </tr>
                 @endforeach
                 

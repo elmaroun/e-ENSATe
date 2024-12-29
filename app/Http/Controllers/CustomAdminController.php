@@ -205,7 +205,7 @@ class CustomAdminController extends Controller
             'status' => 'Traitée',
         ]);
         $mpdf->Output($path, 'F');
-        Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyer($data));
+        Mail::to($result_1->email)->send(new EmailEnvoyer($data));
         return redirect('/demandes');
     }
 
@@ -232,13 +232,10 @@ class CustomAdminController extends Controller
         $path = storage_path('app/public/ATTESTATION_SCOLARITE.pdf'); // Par exemple dans /storage/app/public
         $data = [
             'subject' => 'Votre attestation de scolarité ',
-            'body' => "Cher(e) {{$result_1->name}},
+            'body' => "Cher(e) $result_1->name,
                         Veuillez trouver ci-joint votre attestation de scolarité.
-                        Si vous avez des questions ou besoin d'autres documents, n'hésitez pas à nous contacter.
-                        Cordialement,  
-                        École nationale des sciences appliquées de Tétouan - service de scolarité  <br><br>
-                        ensate@uae.ac.ma
-                        Avenue de la Palestine Mhanech I, TÉTOUAN ",
+                        Si vous avez des questions ou besoin d'autres documents, n'hésitez pas à nous contacter. 
+                         ",
             'path'=> '\app\public\ATTESTATION_SCOLARITE.pdf',
         ];
         Demande::where('id', $id)->update([
@@ -246,7 +243,7 @@ class CustomAdminController extends Controller
         ]);
         
         $mpdf->Output($path, 'F');
-        Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyer($data));
+        Mail::to($result->email)->send(new EmailEnvoyer($data));
         return redirect('/demandes');
     }
     public function accepter_relevee_notes($id)
@@ -263,7 +260,7 @@ class CustomAdminController extends Controller
             );
         $result = $query->first();
 
-        $query = Note::where('student_id', $result->name)
+        $query = Note::where('student_id', $result->id_student)
             ->where('annee', $result->annee);
         $notes= $query->get();
         $average = $query->avg('note');
@@ -278,13 +275,9 @@ class CustomAdminController extends Controller
 
         $data = [
             'subject' => ' votre Relevé de notes',
-            'body' => "Cher(e) {$result->name},
+            'body' => "Cher(e) $result->name,
                         Nous vous transmettons votre relevé de notes pour la période concernée. Ce document est joint à cet email au format PDF.
-                         Si vous avez des questions ou si une erreur s'est glissée, merci de nous le signaler au plus vite.
-                        Cordialement,  
-                        École nationale des sciences appliquées de Tétouan - service de scolarité  <br><br>
-                        ensate@uae.ac.ma
-                        Avenue de la Palestine Mhanech I, TÉTOUAN ",
+                        ",
             'path'=> '\app\public\Releve_de_notes.pdf',
         ];
         Demande::where('id', $id)->update([
@@ -292,7 +285,7 @@ class CustomAdminController extends Controller
         ]);
 
         $mpdf->Output($path, 'F');
-        Mail::to('maroun.ilias@etu.uae.ac.ma')->send(new EmailEnvoyer($data));
+        Mail::to($result ->email)->send(new EmailEnvoyer($data));
 
         return redirect('/demandes');
     }

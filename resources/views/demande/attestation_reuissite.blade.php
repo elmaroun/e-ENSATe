@@ -60,8 +60,7 @@ body{
     <table class="header_table">
     <tr>
         <td class="title" style="width: 20%; font-size:15px; ">Université Abdelmalek Essaâdi Ecole Nationale des Sciences Appliquées Tétouan</td>
-        <td style="width: 2cm; background-color:green;"></td>
-        <td style="width: 30%; background-color:white;"></td>
+
              
         </tr>
 
@@ -90,11 +89,7 @@ body{
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
             <td style="font-size:20px; width:7cm;"> {{ $result->name }}</td>
         </tr>
-        <tr style="margin-bottom:0.8cm;"> 
-            <td style="font-size:20px;width:8cm;font-weight:bold "> Né(e) le </td>
-            <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px; width:7cm;"> 21-01-2003 a OUAZZANE</td>
-        </tr>
+
         <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:8cm;font-weight:bold "> Portant le CNE </td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
@@ -129,7 +124,7 @@ body{
         <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:3cm; font-weight:bold">Session </td>
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px;width:100%;">Printemps {{$result->annee1}}/{{$result->annee2}}</td>
+            <td style="font-size:20px;width:100%;">{{$result->annee}}/ {{$result->annee + 1 }}</td>
         </tr>
         <tr style="margin-bottom:0.8cm;"> 
             <td style="font-size:20px;width:6cm; font-weight:bold">Avec mention :</td>
