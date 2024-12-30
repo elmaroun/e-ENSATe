@@ -33,7 +33,6 @@ class EmailEnvoyer extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('mohamedsadki2003@gmail.com'),
             subject: $this->data['subject'],
         );
     }

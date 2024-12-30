@@ -51,7 +51,7 @@ const detailsdemandesattestationscolarite =({demandes,attestation_scolarites,id}
           ))}
 
           <div className="px-4 sm:px-0 mt-20">
-              <h3 className="text-base/7 font-semibold text-gray-900 underline underline-offset-4 decoration-gray-100">Informations sur la demande de Convention de Stage</h3>
+              <h3 className="text-base/7 font-semibold text-gray-900 underline underline-offset-4 decoration-gray-100">Informations sur la demande de attestation de scolarité</h3>
           </div>
           {attestation_scolarites.map((attestation_scolarite) => (
 

@@ -243,7 +243,7 @@ class CustomAdminController extends Controller
         ]);
         
         $mpdf->Output($path, 'F');
-        Mail::to($result->email)->send(new EmailEnvoyer($data));
+        Mail::to($result_1->email)->send(new EmailEnvoyer($data));
         return redirect('/demandes');
     }
     public function accepter_relevee_notes($id)

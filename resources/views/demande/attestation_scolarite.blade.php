@@ -93,16 +93,12 @@ body{
             <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
             <td style="font-size:20px; width:7cm;"> {{ $result->CNE}}</td>
         </tr>
-         <tr style="margin-bottom:0.8cm;"> 
-            <td style="font-size:20px;width:3cm;font-weight:bold ">Ne le </td>
-            <td style="font-size:20px;margin-left:10%; margin-right:10%; "> : </td>
-            <td style="font-size:20px; width:7cm;"> 25-05-03 a tetouan</td>
-        </tr>
+
 
     </table>
     <table style="width:100%; margin-top:1cm; margin-left:0.5cm;">
         <tr> 
-            <td style="font-size:20px;"> Poursuit ses études, à L’Ecole Nationale des Sciences Appliquées de Tetouan, au titre de l'année universitaire : {{$result->annee1}}/{{$result->annee2}}</td>
+            <td style="font-size:20px;"> Poursuit ses études, à L’Ecole Nationale des Sciences Appliquées de Tetouan, au titre de l'année universitaire : {{$result->annee}}/{{$result->annee + 1}}</td>
         </tr>
     </table>
     <table style="width:60%; margin-top:1cm; margin-left:1cm;">
